@@ -9,7 +9,7 @@ This tutorial allows you to use Data Management API to identify the item corresp
 
 ## Intro
 
-When an exchange is created within Autodesk Construction Cloud, it appears of the `items` type, benefitting from versioning and bearing the same information as any other item.
+When an exchange is created within Autodesk Construction Cloud, it appears of the `items` type, benefiting from versioning and bearing the same information as any other item.
 The only difference between an item of type `items:autodesk.bim360:File` corresponding to (for example) a Revit file, and `items:autodesk.bim360:FDX` specific to an exchange, is that the former (as its type states) is a file that can be downloaded, while an exchange is rather a pointer to the exchange container which holds the exchange data. 
 
 
