@@ -305,14 +305,14 @@ These two elements are essential because all subsequent calls made through Data 
 
 However, the rest of the received payload also contains a lot of useful information, such as the following:
 
-- the type of the exchange container set to `autodesk.fdx.space:exchangecontainer-1.0.0` which indicates that it's a "Space" type item and should contain at least `attributes` and `components`.
+- The type of the exchange container set to `autodesk.fdx.space:exchangecontainer-1.0.0` which indicates that it's a "Space" type item and should contain at least `attributes` and `components`.
 - `attributes` are system-specific properties, but can and should be used to filter the item.
 	
 In the above call, you used the query string `filters=attribute.exchangeFileUrn=='$ITEM_ID` to identify the needed exchange container by the `exchangeFileUrn` attribute. 
 
 **NOTE:** For now, only filtering by `exchangeFileUrn` and `exchangeFileVersionUrn` attributes is allowed, but later, it will be extended to all attributes and components, opening the path forward to workflows like "Give me all exchanges created using this `sourceVersionUrn`."
 
--  `components` hold more complex schema-based properties. In the above payload, you can notice that it contains three properties like the following:
+-  `components` holds more complex schema-based properties. In the above payload, you can notice that it contains three properties like the following:
 
     1. `autodesk.fdx:source.acc-1.0.0`, holding the information about the URN, version, and location of the source file used to create the exchange.
     2. `autodesk.fdx:contract.revitViewGeometry-1.0.0`, holding the data regarding the exchange contract - in this case, it's the name and ID of the view within the source file used to create the exchange.
