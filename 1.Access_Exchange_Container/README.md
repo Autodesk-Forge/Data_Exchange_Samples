@@ -298,7 +298,7 @@ json
 
 From this payload, to further use Data Exchange API, you would require these two elements:
 
--  `exchange id` - the ID of this exchange container. It can be found under `results[0].id` (since we have just one element in the results), and in the above example, it's "cad99e7f-4294-35de-96e5-c9b7a8bc332c";
+-  `exchange id` - the ID of this exchange container. It can be found under `results[0].id` (since we have just one element in the results), and in the above example, it's `cad99e7f-4294-35de-96e5-c9b7a8bc332c`;
 -  `collection id` - the ID of the collection where the exchange data is stored. It can be found under `results[0].collection.id`, and in the above example, its value is `co.cjm3cQPdRBGKft6IWqTDdQ`.
 
 These two elements are essential because all subsequent calls made through Data Exchange API will contain the path `v1/collections/{collectionId}/exchanges/{exchangeId}/`, plus the specific endpoints to retrieve assets, relationships, snapshots, etc.
