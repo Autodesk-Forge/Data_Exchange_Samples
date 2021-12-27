@@ -1,51 +1,50 @@
 # Access the exchange container
 
-This tutorial allows you to use Data Management API to identify the item orresponding to exchange container and use the information from the item to get the exchange container, using Data Exchange API.
+This tutorial allows you to use Data Management API to identify the item corresponding to the exchange container, and use the information from the item to get the exchange container using Data Exchange API.
 
 - [Intro](#intro)
 
 - [Workflow explanation](#workflow-explanation)
 
 
-
 ## Intro
 
-When an exchange is created within Autodesk Construction Cloud, it will appear as `items` type,  benefitting from versioning and bearing same information as any other item.
-The only difference between an item of type `items:autodesk.bim360:File` corresponding to (for example) a Revit file and `items:autodesk.bim360:FDX` specific to an exchange, is that the former (as its type states) it is a file that can be downloaded, while an exchange is rather a pointer to the exchange container which holds the exchange data. 
+When an exchange is created within Autodesk Construction Cloud, it appears of the `items` type, benefitting from versioning and bearing the same information as any other item.
+The only difference between an item of type `items:autodesk.bim360:File` corresponding to (for example) a Revit file, and `items:autodesk.bim360:FDX` specific to an exchange, is that the former (as its type states) is a file that can be downloaded, while an exchange is rather a pointer to the exchange container which holds the exchange data. 
 
 
 ## Workflow explanation
 
-When an exchange is created from a source file (e.g. Revit file), an item of type `items:autodesk.bim360:FDX` is created in same folder where the source file was located. The newly created item is a pointer to the exchange container and the `id` of this very item allows us, using Data Exchange API, to retrieve the exchange container. 
+When an exchange is created from a source file (e.g., Revit file), an item of type `items:autodesk.bim360:FDX` is created in the same folder where the source file is located. The newly created item is a pointer to the exchange container, and the `id` of this very item allows you, using Data Exchange API, to retrieve the exchange container. 
 
-Thus, to get the exchange container, we need the item corresponding to the needed exchange, located in the same hub, project and folder as the source file. This can be achieved using Data Management API, having the workflow that can be resumed to the following steps: 
+Thus, to get the exchange container, you need the item corresponding to the needed exchange located in the same hub, project, and folder as the source file. This can be achieved using Data Management API, having the workflow that can be resumed to the following steps: 
 
 1. Get the `hub id` where the source file resides;
 2. Identify the `project id` where the source file resides;
-3. Identify the parent `folder id`  of the source file;
+3. Identify the parent `folder id` of the source file;
 4. Show the content of the folder and identify the needed item;
-
-5. Having the needed item, its `id` will allow us to get the exchange container using the Data Exchange API.
+5. Use Data Exchange API to get the exchange container having the needed item `id`.
  
 -----------
 
-### 1. Get the `hub id` where the source file resides;
+### 1. Get the `hub id` where the source file resides
 
-To get the `hub id`, we use the `	
-GET	https://developer.api.autodesk.com/project/v1/hubs` call, having a token with `data:read` scope.
+To get the `hub id`, use the `GET https://developer.api.autodesk.com/project/v1/hubs` call having a token with `data:read` scope.
 
 For example:
 
-```shell
+```
+shell
 curl 'https://developer.api.autodesk.com/project/v1/hubs' \
 --header 'Authorization: Bearer '$TOKEN
 ```
-where `TOKEN` here, is the env variable holding our access token.
 
+where `TOKEN` is the env variable holding your access token.
 
-The above call will give you a response similar to the following:
+The above call gives you a response similar to the following:
 
-```json
+```
+json
 {
  
   ...
@@ -63,27 +62,29 @@ The above call will give you a response similar to the following:
       }
     ]
 }
+```
+
+In this response payload, you are interested in `id` of the needed hub. 
+
+Note that certain Forge App can be provisioned in multiple accounts. Thus, after retrieving the hubs, it's important to make sure the needed `hub id` is identified from the list of accessible hubs.
+
+
+### 2. Identify the `project id` where the source file resides
+
+Having the `hub id`, you can now retrieve the list of projects available on that hub by calling this command:
 
 ```
-out of this response payload we are interested in `id` of the needed hub. 
-
-Note that certain Forge App can be provisioned in multiple accounts. Thus, after retrieving the hubs, it is important to make sure the need `hub id` is identified from the list of accesible hubs.
-
-
-
-
-### 2. Identify the `project id` where the source file resides;
-Having the `hub id` we can now retrieve the list of projects available on that hub, by calling
-
-```shell
+shell
 curl 'https://developer.api.autodesk.com/project/v1/hubs/'$HUB_ID'/projects' \
 --header 'Authorization: Bearer '$TOKEN
 ```
-where `HUB_ID` here, is the id in form of `b.5c07c84c-bbd9-476e-8712-547f74c5b76b`.
 
-The above call will give you a response similar to the following:
+where `HUB_ID` is the ID in form of `b.5c07c84c-bbd9-476e-8712-547f74c5b76b`.
 
-```json
+The above call gives you a response similar to the following:
+
+```
+json
 {
     ...
 
@@ -107,26 +108,25 @@ The above call will give you a response similar to the following:
         }
     ]
 }
-
-
 ```
 
-out of this response payload we are interested in `id` of the needed project.
+In this response payload, you are interested in `id` of the needed project.
 
 
-### 3. Identify the `folder id`  where the source file resides;
+### 3. Identify the `folder id` where the source file resides
 
-Having the `project id` we have to get the top folders, out which we are interested in "Project Files", by calling:
+Having the `project id`, you have to get the top folders, out of which you are interested in "Project Files", by calling this command:
 
-```shell
+```
+shell
 curl  'https://developer.api.autodesk.com/project/v1/hubs/'$HUB_ID'/projects/'$PROJECT_ID'/topFolders' \
 --header 'Authorization: Bearer '$TOKEN
-
 ```
 
-giving us an output similar to the following:
+This creates an output similar to the following:
 
-```json
+```
+json
 {
     ...
     "data": [
@@ -146,22 +146,25 @@ giving us an output similar to the following:
 }
 ```
 
-out of this response payload we are interested in `id` of the `Project Files` top folder.
+In this response payload, you are interested in `id` of the "Project Files" top folder.
 
-### 4. Show the content of the folder and identify the needed item;
+### 4. Show the content of the folder and identify the needed item
 
-Having the top folder's id, to get to the needed folder depends on how the folders are organised and how deep the needed folder is placed inside the folder structure. Nevertheless, it resumes to retrieving iteratively, starting with top folder, the folder contents, till reaching the needed folder, with needed contents. 
+Having the top folder ID readily available, the way to get to the needed folder depends on how the folders are organized and how deep the needed folder is placed inside the folder structure. 
+Nevertheless, it resumes to retrieving iteratively, starting with a top folder and followed by its contents, until reaching the desired folder with the needed contents. 
 
-All these iterative calls will have the form of:
+All of these iterative calls have the format like the following:
 
-```shell
+```
+shell
 curl 'https://developer.api.autodesk.com/data/v1/projects/'$PROJECT_ID'/folders/'$FOLDER_ID'/contents' \
 --header 'Authorization: Bearer '$TOKEN
 ```
 
-ultimately provinding the content of the folder where resides the item referencing the needed exchange:
+ultimately providing the content of the folder where the item referencing the needed exchange resides:
 
-```json
+```
+json
 {
    ...
     "data": [
@@ -192,23 +195,25 @@ ultimately provinding the content of the folder where resides the item referenci
 }
 ```
 
-The item pointing to the needed exchange can be identified based on the name given to the exchange, as well as make sure that its `attributes.extension.type` is `items:autodesk.bim360:FDX`;
+The item pointing to the needed exchange can be identified based on the name given to the exchange; though, make sure that its `attributes.extension.type` is set to `items:autodesk.bim360:FDX`.
 
 
 ### 5. Get the exchange container
 
-Having the needed item, its `id` will allow us to get the exchange container using the Data Exchange API, by calling:
+Having the needed item, its `id` allows you to get the exchange container using the Data Exchange API by calling this command:
 
-```shell
+```
+shell
 curl 'https://developer-stg.api.autodesk.com/exchange/v1/exchanges?filters=attribute.exchangeFileUrn=='$ITEM_ID \
 --header 'Authorization: Bearer '$TOKEN
 ```
 
-where `ITEM_ID` is the id of the item having `items:autodesk.bim360:FDX` type.
+where `ITEM_ID` is item ID of the `items:autodesk.bim360:FDX` type.
 
-The above call will return an output (trimmed for brevety) similar to:
+The above call returns an output (trimmed for brevity), similar to the following:
 
-```json
+```
+json
 
 {
     ...
@@ -289,29 +294,30 @@ The above call will return an output (trimmed for brevety) similar to:
         }
     ]
 }
-
 ```
 
-From this payload, to further use Data Exchange API, we would require two elements:
+From this payload, to further use Data Exchange API, you would require these two elements:
 
--  `exchange id` - the id of this exchange container. It is found under `results[0].id` (since we have just one element in results) and in above example it is "cad99e7f-4294-35de-96e5-c9b7a8bc332c";
--  `collection id` - the id of the collection where the exchange data is stored.  It is found under `results[0].collection.id` and in above example it's value is `co.cjm3cQPdRBGKft6IWqTDdQ`
+-  `exchange id` - the ID of this exchange container. It can be found under `results[0].id` (since we have just one element in the results), and in the above example, it's "cad99e7f-4294-35de-96e5-c9b7a8bc332c";
+-  `collection id` - the ID of the collection where the exchange data is stored. It can be found under `results[0].collection.id`, and in the above example, its value is `co.cjm3cQPdRBGKft6IWqTDdQ`.
 
-These two elements are essential becasue all subsequent calls made through Data Exchange API will contain the path `v1/collections/{collectionId}/exchanges/{exchangeId}/`, plus the specific endpoints to retrieve assets, relationships, snapshots and so on.
+These two elements are essential because all subsequent calls made through Data Exchange API will contain the path `v1/collections/{collectionId}/exchanges/{exchangeId}/`, plus the specific endpoints to retrieve assets, relationships, snapshots, etc.
 
-However, the rest of the received payload contains already a lot of useful information:
+However, the rest of the received payload also contains a lot of useful information, such as the following:
 
-- the type of the exchange container is `autodesk.fdx.space:exchangecontainer-1.0.0`, which indicates that it is "Space" type item and should contain at least `attributes` and `components`.
-- `attributes` are system specific properties, but can be and should be used to filter the item.
+- the type of the exchange container set to `autodesk.fdx.space:exchangecontainer-1.0.0` which indicates that it's a "Space" type item and should contain at least `attributes` and `components`.
+- `attributes` are system-specific properties, but can and should be used to filter the item.
 	
-	In above call we used the query string `filters=attribute.exchangeFileUrn=='$ITEM_ID` to identify the needed exchange container by the `exchangeFileUrn` attribute. NOTE: for now only filtering by `exchangeFileUrn` and `exchangeFileVersionUrn` attributes is allowed, but later it will be extended to all atributes and components, opening the road to workflows like "Give me all exchanges created using this `sourceVersionUrn`".
--  `components` hold a more complex schema based properties. In above payload we can notice that it contains three properties:
-	1. `autodesk.fdx:source.acc-1.0.0` holding the information about the urn, version and location of the source file used to create the exchange.
-	2. `autodesk.fdx:contract.revitViewGeometry-1.0.0` holding the data regarding the exchange contract - in thiscase the name and id of the view within source file, used to create the exchange.
-	3. `autodesk.fdx:host.acc-1.0.0` holding the data regarding the name, id and location of the item pointing to the current exchange container.
+In the above call, you used the query string `filters=attribute.exchangeFileUrn=='$ITEM_ID` to identify the needed exchange container by the `exchangeFileUrn` attribute. 
 
+**NOTE:** For now, only filtering by `exchangeFileUrn` and `exchangeFileVersionUrn` attributes is allowed, but later, it will be extended to all attributes and components, opening the path forward to workflows like "Give me all exchanges created using this `sourceVersionUrn`."
 
-In [next tutorial](../2.Access_Data), we will see how to use the exchange container data to get the list of assets, relationships, snapshots and revisions.
+-  `components` hold more complex schema-based properties. In the above payload, you can notice that it contains three properties like the following:
 
+    1. `autodesk.fdx:source.acc-1.0.0`, holding the information about the URN, version, and location of the source file used to create the exchange.
+    2. `autodesk.fdx:contract.revitViewGeometry-1.0.0`, holding the data regarding the exchange contract - in this case, it's the name and ID of the view within the source file used to create the exchange.
+    3. `autodesk.fdx:host.acc-1.0.0`, holding the data regarding the name, ID, and location of the item pointing to the current exchange container.
 
-Please refer to this page for more details: [Data Exchange](https://stg.forge.autodesk.com/en/docs/fdxs/v1/reference/quick_reference/fdxs-getrelationshipsyncurls-GET/?sha=forge_fdxs_master_preview)
+In the [next tutorial](../2.Access_Data), you can see how to use the exchange container data to get the list of assets, relationships, snapshots, and revisions.
+
+Refer to this page for more details: [Data Exchange](https://stg.forge.autodesk.com/en/docs/fdxs/v1/reference/quick_reference/fdxs-getrelationshipsyncurls-GET/?sha=forge_fdxs_master_preview)
