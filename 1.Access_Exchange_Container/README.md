@@ -18,17 +18,17 @@ When an exchange is created from a source file (e.g., Revit file), an item of ty
 
 Thus, to get the exchange container, you need the item corresponding to the needed exchange located in the same hub, project, and folder as the source file. This can be achieved using Data Management API, having the workflow that can be resumed to the following steps: 
 
-1. Get the `hub id` where the source file resides;
-2. Identify the `project id` where the source file resides;
-3. Identify the parent `folder id` of the source file;
+1. Get the Hub ID where the source file resides;
+2. Identify the Project ID where the source file resides;
+3. Identify the parent Folder ID of the source file;
 4. Show the content of the folder and identify the needed item;
-5. Use Data Exchange API to get the exchange container having the needed item `id`.
+5. Use Data Exchange API to get the exchange container having the needed item ID.
  
 -----------
 
-### 1. Get the `hub id` where the source file resides
+### 1. Get the Hub ID where the source file resides
 
-To get the `hub id`, use the `GET https://developer.api.autodesk.com/project/v1/hubs` call having a token with `data:read` scope.
+To get the Hub ID, use the `GET https://developer.api.autodesk.com/project/v1/hubs` call having a token with `data:read` scope.
 
 For example:
 
@@ -65,12 +65,12 @@ json
 
 In this response payload, you are interested in `id` of the needed hub. 
 
-Note that certain Forge App can be provisioned in multiple accounts. Thus, after retrieving the hubs, it's important to make sure the needed `hub id` is identified from the list of accessible hubs.
+Note that certain Forge App can be provisioned in multiple accounts. Thus, after retrieving the hubs, it's important to make sure the needed Hub ID is identified from the list of accessible hubs.
 
 
-### 2. Identify the `project id` where the source file resides
+### 2. Identify the Project ID where the source file resides
 
-Having the `hub id`, you can now retrieve the list of projects available on that hub by calling this command:
+Having the Hub ID, you can now retrieve the list of projects available on that hub by calling this command:
 
 ```
 shell
@@ -112,9 +112,9 @@ json
 In this response payload, you are interested in `id` of the needed project.
 
 
-### 3. Identify the `folder id` where the source file resides
+### 3. Identify the Folder ID where the source file resides
 
-Having the `project id`, you have to get the top folders, out of which you are interested in "Project Files", by calling this command:
+Having the Project ID, you have to get the top folders, out of which you are interested in "Project Files", by calling this command:
 
 ```
 shell
@@ -199,7 +199,7 @@ The item pointing to the needed exchange can be identified based on the name giv
 
 ### 5. Get the exchange container
 
-Having the needed item, its `id` allows you to get the exchange container using the Data Exchange API by calling this command:
+Having the needed item, its ID allows you to get the exchange container using the Data Exchange API by calling this command:
 
 ```
 shell
@@ -297,8 +297,8 @@ json
 
 From this payload, to further use Data Exchange API, you would require these two elements:
 
--  `exchange id` - the ID of this exchange container. It can be found under `results[0].id` (since we have just one element in the results), and in the above example, it's `cad99e7f-4294-35de-96e5-c9b7a8bc332c`;
--  `collection id` - the ID of the collection where the exchange data is stored. It can be found under `results[0].collection.id`, and in the above example, its value is `co.cjm3cQPdRBGKft6IWqTDdQ`.
+-  Exchange ID - the ID of this exchange container. It can be found under `results[0].id` (since we have just one element in the results), and in the above example, it's `cad99e7f-4294-35de-96e5-c9b7a8bc332c`;
+-  Collection ID - the ID of the collection where the exchange data is stored. It can be found under `results[0].collection.id`, and in the above example, its value is `co.cjm3cQPdRBGKft6IWqTDdQ`.
 
 These two elements are essential because all subsequent calls made through Data Exchange API will contain the path `v1/collections/{collectionId}/exchanges/{exchangeId}/`, plus the specific endpoints to retrieve assets, relationships, snapshots, etc.
 
@@ -311,7 +311,7 @@ In the above call, you used the query string `filters=attribute.exchangeFileUrn=
 
 **NOTE:** For now, only filtering by `exchangeFileUrn` and `exchangeFileVersionUrn` attributes is allowed, but later, it will be extended to all attributes and components, opening the path forward to workflows like "Give me all exchanges created using this `sourceVersionUrn`."
 
--  `components` holds more complex schema-based properties. In the above payload, you can notice that it contains three properties like the following:
+-  `components` are more complex schema-based properties. In the above payload, you can notice that it contains three properties like the following:
 
     1. `autodesk.fdx:source.acc-1.0.0`, holding the information about the URN, version, and location of the source file used to create the exchange.
     2. `autodesk.fdx:contract.revitViewGeometry-1.0.0`, holding the data regarding the exchange contract - in this case, it's the name and ID of the view within the source file used to create the exchange.
