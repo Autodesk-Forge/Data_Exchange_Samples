@@ -22,7 +22,7 @@ Thus, to get the exchange container, you need the item corresponding to the need
 2. Identify the Project ID where the source file resides;
 3. Identify the parent Folder ID of the source file;
 4. Show the content of the folder and identify the needed item;
-5. Use Data Exchange API to get the exchange container having the needed item ID.
+5. Use Data Exchange API to get the exchange container having the needed Item ID.
  
 -----------
 
@@ -207,7 +207,7 @@ curl 'https://developer-stg.api.autodesk.com/exchange/v1/exchanges?filters=attri
 --header 'Authorization: Bearer '$TOKEN
 ```
 
-where `ITEM_ID` is item ID of the `items:autodesk.bim360:FDX` type.
+where `ITEM_ID` is the item ID of `items:autodesk.bim360:FDX` type.
 
 The above call returns an output (trimmed for brevity), similar to the following:
 
