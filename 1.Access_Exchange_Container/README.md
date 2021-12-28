@@ -319,4 +319,4 @@ In the above call, you used the query string `filters=attribute.exchangeFileUrn=
 
 In the [next tutorial](../2.Access_Data), you can see how to use the exchange container data to get the list of assets, relationships, snapshots, and revisions.
 
-Refer to this page for more details: [Data Exchange](https://stg.forge.autodesk.com/en/docs/fdxs/v1/reference/quick_reference/fdxs-getrelationshipsyncurls-GET/?sha=forge_fdxs_master_preview).
+Refer to this page for more details: [Data Exchange](https://stg.forge.autodesk.com/en/docs/fdxs/v1/reference/quick_reference/?sha=forge_fdxs_master_preview).
