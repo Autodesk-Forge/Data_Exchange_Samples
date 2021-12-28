@@ -1,4 +1,4 @@
-# Access the exchange container
+# Access exchange container
 
 This tutorial allows you to use Data Management API to identify the item corresponding to the exchange container, and use the information from the item to get the exchange container using Data Exchange API:
 
