@@ -1,58 +1,54 @@
 # Access data
 
-This tutorial allows you, having the `collection id` and `exchange id` found within exchange container, to further use Data Exchange API to retrieve assets, relationships, snapshots and revisions.
+This tutorial allows you, having the Collection ID and Exchange ID found within exchange container, to further use Data Exchange API to retrieve assets, relationships, snapshots, and revisions:
 
 - [Intro](#intro)
 
 - [Workflow explanation](#workflow-explanation)
 
 
-
 ## Intro
 
-As mentioned at the end of [Access the exchange container](../1.Access_Exchange_Container) tutorial, all Data Exchange API contain the path `v1/collections/{collectionId}/exchanges/{exchangeId}/` and consequently require:
+As mentioned at the end of [Access exchange container](../1.Access_Exchange_Container) tutorial, all Data Exchange APIs contain the path `v1/collections/{collectionId}/exchanges/{exchangeId}/` and consequently require:
 
--  `exchange id` - the id of the exchange container.
--  `collection id` - the id of the collection where, the exchange data is stored.
+-  Exchange ID - the ID of the exchange container.
+-  Collection ID - the ID of the collection where the exchange data is stored.
 
-These two ids can be found within exchange container, which can be retrieved following [Access the exchange container](../1.Access_Exchange_Container) tutorial.
-
-
+These two IDs can be found within the exchange container, which can be retrieved by following [Access exchange container](../1.Access_Exchange_Container) tutorial.
 
 
 ## Workflow explanation
 
-An exchange container is the entry point for exchange data. The exchange data consists of collection of assets, connected through relationships - forming a graph, whose states are captured into snapshots.
-A more indepth walk through the data, how it is structured and what information it holds, will be discussed in the next tutorial, while in this tutorial we will concentrante on ways of retrieving the data.
+An exchange container is the entry point for exchange data. The exchange data consists of collection of assets, connected through relationships - forming a graph whose states are captured into snapshots.
+A more in-depth walk through the data, how it is structured, and what information it holds is discussed in the next tutorial, while here you can concentrate on ways of retrieving the data.
 
-There are two ways of retrieving the data:
+There are two ways of retrieving the data as follows:
 
-1. download all data and process on the client side;
-2. download only parts you need by specifying filters or using the closure queries.
+1. Download all data for processing on the client side;
+2. Download only parts you need by specifying filters or using the closure queries.
 
-
- 
 -----------
 
-### 1. Download all data and process on the client side;
+### 1. Download all data for processing on the client side
 
-Downloading the entire data is intuitive and each type of entity, be it assets, relationships or snapshots, each has their own endpoint:
+Downloading the entire data is intuitive, and each type of entity (e.g., assets, relationships, or snapshots) has its own endpoint:
 
 
-#### a. Downloading assets:
+#### a. Downloading assets
 
-To download the assets we have to use [v1/collections/{collectionId}/exchanges/{exchangeId}/assets:sync](https://stg.forge.autodesk.com/en/docs/fdxs/v1/reference/quick_reference/fdxs-getassets-GET/?sha=forge_fdxs_master_preview), using. a token with `data:read` scope:
+To download the assets, we have to use [v1/collections/{collectionId}/exchanges/{exchangeId}/assets:sync](https://stg.forge.autodesk.com/en/docs/fdxs/v1/reference/quick_reference/fdxs-getassets-GET/?sha=forge_fdxs_master_preview) having a token with `data:read` scope:
 
 ```shell
 curl 'https://developer.api.autodesk.com/exchange/v1/collections/'$COLLECTION_ID'/exchanges/'$EXCHANGE_ID'/assets:sync' \
 --header 'Authorization: Bearer '$TOKEN
 ```
-where `TOKEN` is the env variable holding our access token and `COLLECTION_ID` with `EXCHANGE_ID` are the ids retrieved from the exchange container.
 
+where `TOKEN` is the env variable holding our access token, and `COLLECTION_ID` with `EXCHANGE_ID` are the IDs retrieved from the exchange container.
 
-The above call will give a response similar to the following:
+The above call provides a response similar to the following:
 
-```json
+```
+json
 {
     "pagination": {
         "cursor": "7b22637...7d",
@@ -83,26 +79,28 @@ The above call will give a response similar to the following:
     ],
     "root": "1F27591A01D9596B97522612977B7BCF88F33EA0"
 }
-
 ```
-For brevity, the output was trimmed. We will go into more details on asset data in next tutorial, but for now, the most important thing is that we will get back pages of results (by default a page will return 50 assets) and as long as the `cursor` field is not empty, there is a page to receive by providing that cursor as query parameter, like:
+
+For brevity, the output was trimmed. You can see more details on asset data in the next tutorial, but for now, the most important thing to understand is that you get back pages of results (by default, a page returns 50 assets), and as long as the `cursor` field is not empty, there is a page to receive by providing that cursor as a query parameter like the following:
 
 ```shell
 curl --location --request GET 'https://developer-stg.api.autodesk.com/exchange/v1/collections/co.cjm3cQPdRBGKft6IWqTDdQ/exchanges/474b17e1-0a39-3577-a349-0dccfd8680f4/assets:sync?cursor='$CURSOR \
 --header 'Authorization: Bearer '$TOKEN 
 ```
 
-This kind of sequential query could be dounting, especially if the source view contains many elements, you can expect hundreds of elements, which will require dozens of sequential calls, to retrieve all data.
+This kind of sequential query could be dounting, especially if the source view contains many elements; you can expect hundreds of elements which require dozens of sequential calls, to retrieve all data.
 
-For this very purpose, there is a way to facilitate parallel retrieving of the data, by calling [v1/collections/{collectionId}/exchanges/{exchangeId}/assets:sync-urls](https://stg.forge.autodesk.com/en/docs/fdxs/v1/reference/quick_reference/fdxs-getassetsyncurls-GET/?sha=forge_fdxs_master_preview) like:
+For this very purpose, there is a way to facilitate parallel retrieving of the data by calling [v1/collections/{collectionId}/exchanges/{exchangeId}/assets:sync-urls](https://stg.forge.autodesk.com/en/docs/fdxs/v1/reference/quick_reference/fdxs-getassetsyncurls-GET/?sha=forge_fdxs_master_preview) like the following:
 
 ```shell
 curl 'https://developer.api.autodesk.com/exchange/v1/collections/'$COLLECTION_ID'/exchanges/'$EXCHANGE_ID'/assets:sync-url' \
 --header 'Authorization: Bearer '$TOKEN
 ```
-This call will request the data in form of list of urls to pages containing the data, proving an output similar to:
 
-```json
+This call requests the data in form of list of URLs to pages containing the data, providing an output similar to the following:
+
+```
+json
 {
     "pagination": {
         "cursor": "",
@@ -124,30 +122,29 @@ This call will request the data in form of list of urls to pages containing the 
         ]
     }
 }
-
-
 ```
 
-These urls then, can be used concurently to get all the pages and concatenate the results, increasing the speed of retrieving the data.
+These URLs then can then be used concurently to get all the pages and concatenate the results, increasing the speed of retrieving the data.
+
+At first sight, the `assets:sync-urls` (parallel) way of retrieving data seems to be the best, but paginated approach `assets:sync` has its own benefits too.
+
+**TIP:** In case you expect to get a lot of assets as result of a request, the best approach is to use the `assets:sync-urls` to get the list of pages. 
+However, in case you expect a smaller (max 50) number of assets (e.g., when using filters), it's more optimal to use `assets:sync` returning the page with results.
 
 
-At first sight, the `assets:sync-urls` (parallel) way of retrieving data seems to be the best, but paginated approach `assets:sync` has it's own benefits, too.
+#### b. Downloading relationships
 
-**TIP**: In case we expect to get a lot of assets as result of a request, the best approach is to use the `assets:sync-urls`, to get the list of pages. However, in case we expect a small (max 50) number of assets (e.g. when using filters), it is more optimal to use `assets:sync`, returning the page with results.
-
-
-#### b. Downloading relationships:
-
-To download the relationships we have to use [v1/collections/{collectionId}/exchanges/{exchangeId}/relationships:sync](https://stg.forge.autodesk.com/en/docs/fdxs/v1/reference/quick_reference/fdxs-getrelationships-GET/?sha=forge_fdxs_master_preview), using. a token with `data:read` scope:
+To download the relationships, you have to use [v1/collections/{collectionId}/exchanges/{exchangeId}/relationships:sync](https://stg.forge.autodesk.com/en/docs/fdxs/v1/reference/quick_reference/fdxs-getrelationships-GET/?sha=forge_fdxs_master_preview) having a token with `data:read` scope:
 
 ```shell
 curl 'https://developer.api.autodesk.com/exchange/v1/collections/'$COLLECTION_ID'/exchanges/'$EXCHANGE_ID'/relationships:sync' \
 --header 'Authorization: Bearer '$TOKEN
 ```
 
-The above call will give a response similar to the following:
+The above call provides a response similar to the following:
 
-```json
+```
+json
 {
     "pagination": {
         "cursor": "7b226...764227d",
@@ -182,26 +179,29 @@ The above call will give a response similar to the following:
 }
 ```
 
-The results in structure are similar to those when getting the assets. The same options are also available when retrieving the full data, either iterate through paginated results `relationships:sync`, using the `cursor`, or use the `relationships:sync-urls` to get the links to data pages and use it for concurent retrieving. The structure of `relationships:sync-urls` results is similar to those of `assets:sync-urls` and are omitted here.
+The results in structure are similar to those when getting the assets. The same options are also available when retrieving the full data, either iterating through paginated results `relationships:sync` using the `cursor`, or using the `relationships:sync-urls` to get the links to data pages and using it for concurent retrieving. 
+The structure of `relationships:sync-urls` results is similar to those of `assets:sync-urls`, and is omitted here.
 
 
-#### c. Downloading snapshot:
+#### c. Downloading snapshot
 
-An exchange snapshot is a specification of what is included in each exchange fulfillment. The exchange snapshot provides a count of what is created, modified, and removed in that snapshot. Thus, in case of one exchange container, there will be just  one snapshot, and any changes made made to an exchange, will not create another snapshot, but another revision of the snapshot. A revision can be seen as a sort of version, but we will see that it is more than that in another tutorial where we will have a closer look at structure of snapshot and revisions.
+An exchange snapshot is a specification of what is included in each exchange fulfillment. The exchange snapshot provides a count of what is created, modified, and removed in that snapshot. 
+Thus, in case of one exchange container, there will be just one snapshot, and any changes made to an exchange will not create another snapshot, but - another revision of the snapshot. 
+A revision can be seen as a sort of version, but you will see that it's more than that in another tutorial where you will have a closer look at structure of snapshot and revisions.
 
-To get the snapshot, we have to use [v1/collections/{collectionId}/exchanges/{exchangeId}/snapshots:exchange](https://stg.forge.autodesk.com/en/docs/fdxs/v1/reference/quick_reference/fdxs-getexchangesnapshot-GET/?sha=forge_fdxs_master_preview), using. a token with `data:read` scope:
+To get the snapshot, you have to use [v1/collections/{collectionId}/exchanges/{exchangeId}/snapshots:exchange](https://stg.forge.autodesk.com/en/docs/fdxs/v1/reference/quick_reference/fdxs-getexchangesnapshot-GET/?sha=forge_fdxs_master_preview) having a token with `data:read` scope:
 
 ```shell
 curl 'https://developer.api.autodesk.com/exchange/v1/collections/'$COLLECTION_ID'/exchanges/'$EXCHANGE_ID'/snapshots:exchange' \
 --header 'Authorization: Bearer '$TOKEN
-
 ```
 
-The above call will give a response similar to the following:
+The above call provides a response similar to the following:
 
-TODO: THIS IS EMPTY. REPLACE WHEN THE IMPLEMENTATION WILL BE READY
+TODO: THIS IS EMPTY. REPLACE WHEN THE IMPLEMENTATION WILL BE READY.
 
-```json
+```
+json
 {
     "createdBy": {
         "serviceId": "CsBcAd522LYGDZmszDtALE8iuzpKPtXX",
@@ -226,38 +226,35 @@ TODO: THIS IS EMPTY. REPLACE WHEN THE IMPLEMENTATION WILL BE READY
     "revisionId": "1640207302775_a3fa4471-229c-3265-818d-d2c87dbf2a8d",
     "deleted": false
 }
-
 ```
 
-TODO: WHEN IMPLEMENTATION READY, OUTLINE THE IMPORTANT PARTS.
-TODO: WHEN IMPLEMENTATION READY, EXPLAIN THE REVISION CONCEPT.
+TODO: WHEN IMPLEMENTATION BECOMES READY, OUTLINE THE IMPORTANT PARTS.
+TODO: WHEN IMPLEMENTATION BECOMES READY, EXPLAIN THE REVISION CONCEPT.
 
 
+### 2. Download only parts you need by specifying filters or using the closure queries
 
+In case of snapshot and its revisions, you have to deal with a single entity. 
+In case of assets and relationships, even in case of smaller designs, the number of entities will be quite big. 
 
+The approach of downloading everything (`assets:sync` and `relationships:sync`) and dealing with it on the client side is a viable approach, and it's facilitated by an option of getting everything concurently through provided list of URLs (`assets:sync-urls` and `relationships:sync-urls`).
 
-### 2. Download only parts you need by specifying filters or using the closure queries.
+However, a lot of effort and time will be saved if everything is performed at server level, especially when you know what you're looking for.
 
-In case of snapshot and its revisions, we have to deal with a single entity. In case of assets and relationships, even in case of small designes, the number of entities will be quite big. 
+To perform `search and retrieve` on the server side, there are two approaches as follows:
 
-The approach of downloading everything (`assets:sync` and `relationships:sync`)and deal with it on the client size is a viable approach and it is facilitated by option of getting everything concurently through provided list of urls (`assets:sync-urls` and `relationships:sync-urls`).
+a. Use filtering when creating requests;
+b. Use closure-queries for a more advanced search.
 
-However, a lot of effort and time will be saved if everything will be performed at server level, especially when we know what we are looking for.
+Let's dive deeper into each approach to better understand the benefits and limitations.
 
-To perform `search and retrieve` on the server side, there are two aproaches:
+#### a. Use filtering when creating requests
 
-a. use filtering when doing requests;
+To be able to use filtering at its best, it's important to know the structure of an entity. 
+In context of Data Exchange,- collections, scenes, assets, relationships, and snapshots are named entities and have the same kernel:
 
-b. use closure-queries for a more advanced search.
-
-Let us dive deeper into each approach, to better understand the benefits and limitations.
-
-#### a. Use filtering when doing requests
-
-To be able to use filtering at its best, it is important to know the structure of an entity. 
-In context of Data Exchange, collections, scenes, assets, relationships and snapshots are named entities and have the same kernel:
-
-```json
+```
+json
 {
     "id": "123abc",
     "type": "autodesk.fdx:exchange.<<entity>>-1.0.0",
@@ -273,12 +270,14 @@ In context of Data Exchange, collections, scenes, assets, relationships and snap
     }
 }
 ```
-Thus, the common and important parts of any entity type, besides its `id` are the `attributes` and `components`. The attributes are mainly used to store key-value system data.
-Components on the other hand, is the place where the properties of model parts are stored, using a certain schema.
 
-For filterning purposes, it is important to understand that both, attributes and components fields can be used as a filter.
+Thus, the common and important parts of any entity type, besides its `id`, are the `attributes` and `components`. 
+The attributes are mainly used to store key-value system data.
+Components, on the other hand, is the place where the properties of model parts are stored using a certain schema.
 
-For example.	
+For filterning purposes, it's important to understand that both attributes and components fields can be used as a filter.
+
+For example:	
 
 TODO: WHEN IT WILL BE IMPLEMENTD ADD EXAMPLES FOR:
 			- assetId=="045CE617E7DF23C864EADB6BB5245823DE1D6043"
@@ -287,16 +286,18 @@ TODO: WHEN IT WILL BE IMPLEMENTD ADD EXAMPLES FOR:
     		- entitytype=="autodesk.design:assets.instance-1.0.0"
 ENDTODO
 
-#### b. use closure-queries for a more advanced search
 
-Using filters is useful, but might the limited to providing only data (assets, relationships) bellonging to a certain set with common properties (types, attributes, components).
+#### b. Use closure-queries for a more advanced search
 
-However, when it comes to traversing the data graph, having a starting point, like a given asset, and get other assets related to the starting asset by traversing the relationships it is part of - this is way more complex task.
+Using filters is useful, but might be limited to providing only data (assets, relationships) belonging to a certain set with common properties (types, attributes, components).
+However, when it comes to traversing the data graph, having a starting point like a given asset and getting other assets related to the starting asset by traversing the relationships it's part of - this is a way more complex task.
 
-In context of Data exchange, this task of traversing the graph is made through closure queries and can be performed throug [v1/collections/{collectionId}/exchanges/{exchangeId}/assets:get-closure](https://stg.forge.autodesk.com/en/docs/fdxs/v1/reference/quick_reference/fdxs-getassetclosure-POST/?sha=forge_fdxs_master_preview) call, by passing through request body a certain set of parameters.
+In context of Data Exchange, this task of traversing the graph is made through closure queries and can be performed through [v1/collections/{collectionId}/exchanges/{exchangeId}/assets:get-closure](https://stg.forge.autodesk.com/en/docs/fdxs/v1/reference/quick_reference/fdxs-getassetclosure-POST/?sha=forge_fdxs_master_preview) call by passing through request body a certain set of parameters.
 
-For example, the minimum body is :
-```shell
+For example, the minimum body is:
+
+```
+shell
 {
         "startAssets": [
           {
@@ -305,9 +306,11 @@ For example, the minimum body is :
         ]
 }
 ```
-and this will return all assets relatied to the start assets, along with relationships it is part of (bw it `from` or `to` relationships), as well as the sub-graph topology:
 
-```json
+and this returns all assets related to the starting assets along with relationships it's part of (between `from` and `to` relationships), as well as the sub-graph topology:
+
+```
+json
 {
     "topology": {
         "nodes": [
@@ -345,15 +348,16 @@ and this will return all assets relatied to the start assets, along with relatio
     "traversedLevels": 1,
     ...
 }
-
 ```
-The `topology` part will include the information on `nodes` (assets) related to starting asset, as well as the `edges` (relationships) in which the starting assets is part of.
-The body response will also include in the field `relationships` and `assets` the entities themselves, so it saves time in further retrieving the involved enteties.
 
-In this case, the result is not very big, but it also can end up having dozens of assets and even more relationships (bidirectional relationships are represented by two relationships with oposite direction). Thus, to norrow down the results, the closure queries supports `assetFilters ` and `relationshipFilters ` which helps limiting the results to assets and relationships respecting filtering criteria.
+The `topology` part includes the information on `nodes` (assets) related to a starting asset, as well as the `edges` (relationships) which the starting assets are a part of.
+The body response also includes the entities themselves in the fields `relationships` and `assets`, so it saves time in further retrieving the involved entities.
+
+In this case, the result is not significantly big, but it also can end up having dozens of assets and even more relationships (bi-directional relationships are represented by two relationships with opposite directions). 
+Thus, to narrow down the results, the closure queries support `assetFilters` and `relationshipFilters` which helps limiting the results to assets and relationships respecting the filtering criteria.
 
 TODO: DEVELOP THIS PART WHEN CLOSURE QUERIES WILL BE FINISHED.
-	CURRENT STATE THROWS FOLLOWING ERRORS:
+	CURRENT STATE THROWS THE FOLLOWING ERRORS:
 			
 			- "The maximum number of assets that can be supplied is 1”, but "startAssets": [] is an array.
 			- "The maximum number of asset filters that can be applied is 0"
@@ -363,7 +367,6 @@ ENDTODO
 
 	   
 
-In [next tutorial](), we will go deeper in undestanding the structure of each entity and how they form together the data graph.
+In the [next tutorial](), you will better understand the structure of each entity, and how they form the data graph together.
 
-
-Please refer to this page for more details: [Data Exchange](https://stg.forge.autodesk.com/en/docs/fdxs/v1/reference/quick_reference/fdxs-getrelationshipsyncurls-GET/?sha=forge_fdxs_master_preview)
+Refer to this page for more details: [Data Exchange](https://stg.forge.autodesk.com/en/docs/fdxs/v1/reference/quick_reference/?sha=forge_fdxs_master_preview).
