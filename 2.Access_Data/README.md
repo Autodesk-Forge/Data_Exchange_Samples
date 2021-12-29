@@ -11,7 +11,7 @@ This tutorial allows you, having the Collection ID and Exchange ID found within 
 
 As mentioned at the end of [Access exchange container](../1.Access_Exchange_Container) tutorial, all Data Exchange APIs contain the path `v1/collections/{collectionId}/exchanges/{exchangeId}/` and consequently require:
 
--  Exchange ID - the ID of the exchange container.
+-  Exchange ID - the ID of the exchange container;
 -  Collection ID - the ID of the collection where the exchange data is stored.
 
 These two IDs can be found within the exchange container, which can be retrieved by following [Access exchange container](../1.Access_Exchange_Container) tutorial.
@@ -366,7 +366,6 @@ TODO: DEVELOP THIS PART WHEN CLOSURE QUERIES WILL BE FINISHED.
 ENDTODO
 
 	   
-
 In the [next tutorial](), you will better understand the structure of each entity, and how they form the data graph together.
 
 Refer to this page for more details: [Data Exchange](https://stg.forge.autodesk.com/en/docs/fdxs/v1/reference/quick_reference/?sha=forge_fdxs_master_preview).
