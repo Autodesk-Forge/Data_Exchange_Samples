@@ -1,6 +1,6 @@
 # Access exchange container
 
-This tutorial allows you to use Data Management API to identify the item corresponding to the exchange container, and use the information from the item to get the exchange container using Data Exchange API:
+This tutorial will allow you to use Data Management API to identify the item corresponding to the exchange container, and use the information from the item to get the exchange container using Data Exchange API:
 
 - [Intro](#intro)
 - [Workflow explanation](#workflow-explanation)
@@ -307,9 +307,9 @@ However, the rest of the received payload also contains a lot of useful informat
 - The type of the exchange container set to `autodesk.fdx.space:exchangecontainer-1.0.0` which indicates that it's a "Space" type item and should contain at least `attributes` and `components`.
 - `attributes` are system-specific properties, but can and should be used to filter the item.
 	
-In the above call, you used the query string `filters=attribute.exchangeFileUrn=='$ITEM_ID` to identify the needed exchange container by the `exchangeFileUrn` attribute. 
+   In the above call, you used the query string `filters=attribute.exchangeFileUrn=='$ITEM_ID` to identify the needed exchange container by the `exchangeFileUrn` attribute. 
 
-**NOTE:** For now, only filtering by `exchangeFileUrn` and `exchangeFileVersionUrn` attributes is allowed, but later, it will be extended to all attributes and components, opening the path forward to workflows like "Give me all exchanges created using this `sourceVersionUrn`."
+   **NOTE:** For now, only filtering by `exchangeFileUrn` and `exchangeFileVersionUrn` attributes is allowed, but later, it will be extended to all attributes and components, opening the path forward to workflows like "Give me all exchanges created using this `sourceVersionUrn`."
 
 -  `components` are more complex schema-based properties. In the above payload, you can notice that it contains three properties like the following:
 
@@ -317,6 +317,6 @@ In the above call, you used the query string `filters=attribute.exchangeFileUrn=
     2. `autodesk.fdx:contract.revitViewGeometry-1.0.0`, holding the data regarding the exchange contract - in this case, it's the name and ID of the view within the source file used to create the exchange.
     3. `autodesk.fdx:host.acc-1.0.0`, holding the data regarding the name, ID, and location of the item pointing to the current exchange container.
 
-In the [next tutorial](../2.Access_Data), you can see how to use the exchange container data to get the list of assets, relationships, snapshots, and revisions.
+In the [next tutorial](../2.Access_Data), you will see how to use the exchange container data to get the list of assets, relationships, snapshots, and revisions.
 
 Refer to this page for more details: [Data Exchange](https://stg.forge.autodesk.com/en/docs/fdxs/v1/reference/quick_reference/?sha=forge_fdxs_master_preview).
