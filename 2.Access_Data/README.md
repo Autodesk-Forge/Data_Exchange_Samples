@@ -281,6 +281,7 @@ TODO: WHEN IT WILL BE IMPLEMENTD ADD EXAMPLES FOR:
 		   - has.component.type=="autodesk.design:components.parameter-1.0.0"
     		- attribute.ExternalId=="bac06658-19d8-494b-b87a-559081499f8f-000e5925"
     		- entitytype=="autodesk.design:assets.instance-1.0.0"
+
 ENDTODO
 
 
@@ -304,7 +305,7 @@ shell
 }
 ```
 
-and returns all assets related to the starting assets along with relationships it's part of (between `from` and `to` relationships), as well as the sub-graph topology:
+and returns all assets related to the starting assets along with relationships they're part of (between `from` and `to` relationships), as well as the sub-graph topology:
 
 ```
 json
@@ -347,11 +348,10 @@ json
 }
 ```
 
-The `topology` part includes the information on `nodes` (assets) related to a starting asset, as well as the `edges` (relationships) which the starting assets are part of.
-The body response also includes the entities themselves in the fields `relationships` and `assets`, so it saves time in further retrieving the involved entities.
+The `topology` part includes the information on `nodes` (e.g., assets) related to a starting asset, as well as the `edges` (e.g., relationships) which the starting assets are part of. The body response also includes the entities themselves in the fields `relationships` and `assets`, so that it saves time in further retrieving the involved entities.
 
-In this case, the result is not significantly big, but it also can end up having dozens of assets and even more relationships (bi-directional relationships are represented by two relationships with opposite directions). 
-Thus, to narrow down the results, the closure queries support `assetFilters` and `relationshipFilters` which helps limiting the results to assets and relationships respecting the filtering criteria.
+In this case, the result is not significantly big, but it also can end up having dozens of assets and even more relationships. Note that bi-directional relationships are represented by two relationships with opposite directions. 
+To narrow down the results, the closure queries support `assetFilters` and `relationshipFilters`, which helps limiting the results to assets and relationships respecting the filtering criteria.
 
 TODO: DEVELOP THIS PART WHEN CLOSURE QUERIES WILL BE FINISHED.
 	CURRENT STATE THROWS THE FOLLOWING ERRORS:
