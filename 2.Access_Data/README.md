@@ -87,7 +87,7 @@ curl --location --request GET 'https://developer-stg.api.autodesk.com/exchange/v
 --header 'Authorization: Bearer '$TOKEN 
 ```
 
-This kind of sequential query could be dounting, especially if the source view contains many elements; you can expect hundreds of elements which require dozens of sequential calls, to retrieve all the data.
+This kind of sequential query could be daunting, especially if the source view contains many elements; you can expect hundreds of elements which require dozens of sequential calls, to retrieve all the data.
 
 For this very purpose, there is a way to facilitate parallel retrieval of data by calling [v1/collections/{collectionId}/exchanges/{exchangeId}/assets:sync-urls](https://stg.forge.autodesk.com/en/docs/fdxs/v1/reference/quick_reference/fdxs-getassetsyncurls-GET/?sha=forge_fdxs_master_preview) as follows:
 
@@ -123,7 +123,7 @@ json
 }
 ```
 
-These URLs can then be used concurently to get all the pages and concatenate the results, increasing the speed of retrieving the data.
+These URLs can then be used concurrently to get all the pages and concatenate the results, increasing the speed of retrieving the data.
 
 At first sight, the `assets:sync-urls` (parallel) way of retrieving data seems to be the best, but paginated approach `assets:sync` has its own benefits too.
 
@@ -178,14 +178,14 @@ json
 }
 ```
 
-The results in structure are similar to those when getting the assets. The same options are also available when retrieving the full data, either iterating through paginated results `relationships:sync` using the `cursor`, or using the `relationships:sync-urls` to get the links to data pages and using it for concurent retrieving. 
+The results in structure are similar to those when getting the assets. The same options are also available when retrieving the full data, either iterating through paginated results `relationships:sync` using the `cursor`, or using the `relationships:sync-urls` to get the links to data pages and using it for concurrent retrieving. 
 The structure of `relationships:sync-urls` results is similar to those of `assets:sync-urls`, and is omitted here.
 
 
 #### c. Downloading snapshot
 
-An exchange snapshot is a specification of what is included in each exchange fulfillment. The exchange snapshot provides a count of what is created, modified, and removed in that snapshot. Thus, in case of one exchange container, there will be just one snapshot, and any changes made to an exchange will not create another snapshot, but - another revision of the snapshot. 
-A revision can be seen as a sort of version, but you will see that it's more than that in another tutorial where you will have a closer look at structure of a snapshot and revisions.
+An exchange snapshot is a specification of what is included in each exchange fulfillment. The exchange snapshot provides a count of what is created, modified, and removed in that snapshot. Thus, in the case of one exchange container, there will be just one snapshot, and any changes made to an exchange will not create another snapshot, but - another revision of the snapshot. 
+A revision can be seen as a sort of version, but you will see that it's more than that in another tutorial where you will have a closer look at the structure of a snapshot and revisions.
 
 To get the snapshot, you need to use [v1/collections/{collectionId}/exchanges/{exchangeId}/snapshots:exchange](https://stg.forge.autodesk.com/en/docs/fdxs/v1/reference/quick_reference/fdxs-getexchangesnapshot-GET/?sha=forge_fdxs_master_preview), having a token with `data:read` scope:
 
@@ -235,7 +235,7 @@ TODO: WHEN IMPLEMENTATION BECOMES READY, EXPLAIN THE REVISION CONCEPT.
 In case of a snapshot and its revisions, you need to deal with a single entity. 
 In case of assets and relationships, even in case of smaller designs, the number of entities will be quite big. 
 
-The approach of downloading everything (`assets:sync` and `relationships:sync`) and dealing with it on the client side is a viable approach, and it's facilitated by an option of getting everything concurently through provided list of URLs (`assets:sync-urls` and `relationships:sync-urls`).
+The approach of downloading everything (`assets:sync` and `relationships:sync`) and dealing with it on the client side is a viable approach, and it's facilitated by an option of getting everything concurrently through a provided list of URLs (`assets:sync-urls` and `relationships:sync-urls`).
 
 However, a lot of effort and time can be saved if everything is performed at a server level, especially when you know what you're looking for.
 
@@ -276,7 +276,7 @@ For filtering purposes, it's important to understand that both attributes and co
 
 For example:	
 
-TODO: WHEN IT WILL BE IMPLEMENTD ADD EXAMPLES FOR:
+TODO: WHEN IT WILL BE IMPLEMENTED? ADD EXAMPLES FOR:
 			- assetId=="045CE617E7DF23C864EADB6BB5245823DE1D6043"
 		   - has.component.type=="autodesk.design:components.parameter-1.0.0"
     		- attribute.ExternalId=="bac06658-19d8-494b-b87a-559081499f8f-000e5925"
@@ -351,7 +351,7 @@ json
 The `topology` part includes the information on `nodes` (e.g., assets) related to a starting asset, as well as the `edges` (e.g., relationships) which the starting assets are part of. The body response also includes the entities themselves in the fields `relationships` and `assets`, so that it saves time in further retrieving the involved entities.
 
 In this case, the result is not significantly big, but it also can end up having dozens of assets and even more relationships. Note that bi-directional relationships are represented by two relationships with opposite directions. 
-To narrow down the results, the closure queries support `assetFilters` and `relationshipFilters`, which helps limiting the results to assets and relationships respecting the filtering criteria.
+To narrow down the results, the closure queries support `assetFilters` and `relationshipFilters`, which helps limit the results to assets and relationships respecting the filtering criteria.
 
 TODO: DEVELOP THIS PART WHEN CLOSURE QUERIES WILL BE FINISHED.
 	CURRENT STATE THROWS THE FOLLOWING ERRORS:
