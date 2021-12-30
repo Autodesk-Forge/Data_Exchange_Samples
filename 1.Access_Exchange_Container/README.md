@@ -63,9 +63,9 @@ json
 }
 ```
 
-In this response payload, you are interested in `id` of the needed hub. 
+In this response payload, you are interested in the `id` of the needed hub. 
 
-Note that certain Forge App can be provisioned in multiple accounts. Thus, after retrieving the hubs, it's important to make sure the needed Hub ID is identified from the list of accessible hubs.
+Note that certain Forge Apps can be provisioned in multiple accounts. Thus, after retrieving the hubs, it's important to make sure the needed Hub ID is identified from the list of accessible hubs.
 
 
 ### 2. Identify the Project ID where the source file resides
@@ -78,7 +78,7 @@ curl 'https://developer.api.autodesk.com/project/v1/hubs/'$HUB_ID'/projects' \
 --header 'Authorization: Bearer '$TOKEN
 ```
 
-where `HUB_ID` is the ID in form of `b.5c07c84c-bbd9-476e-8712-547f74c5b76b`.
+where `HUB_ID` is the ID in the form of `b.5c07c84c-bbd9-476e-8712-547f74c5b76b`.
 
 The above call gives you a response similar to the following:
 
@@ -109,7 +109,7 @@ json
 }
 ```
 
-In this response payload, you are interested in `id` of the needed project.
+In this response payload, you are interested in the `id` of the needed project.
 
 
 ### 3. Identify the Folder ID where the source file resides
@@ -145,7 +145,7 @@ json
 }
 ```
 
-In this response payload, you are interested in `id` of the "Project Files" top folder.
+In this response payload, you are interested in the `id` of the "Project Files" top folder.
 
 ### 4. Show the content of the folder and identify the needed item
 
@@ -304,7 +304,7 @@ These two elements are essential because all subsequent calls made through Data 
 
 However, the rest of the received payload also contains a lot of useful information, such as the following:
 
-- The type of the exchange container set to `autodesk.fdx.space:exchangecontainer-1.0.0` which indicates that it's a "Space" type item and should contain at least `attributes` and `components`.
+- The type of the exchange container is set to `autodesk.fdx.space:exchangecontainer-1.0.0` which indicates that it's a "Space" type item and should contain at least `attributes` and `components`.
 - `attributes` are system-specific properties, but can and should be used to filter the item.
 	
    In the above call, you used the query string `filters=attribute.exchangeFileUrn=='$ITEM_ID` to identify the needed exchange container by the `exchangeFileUrn` attribute. 
