@@ -80,7 +80,7 @@ json
 }
 ```
 
-For brevity, the output was trimmed. You can see more details on asset data in the next tutorial, but for now, the most important thing to understand is that you get back pages of results (by default, a page returns 50 assets), and as long as the `cursor` field is not empty, a page to receive (by providing the cursor as a query parameter) is like the following:
+For brevity, the output was trimmed. You can see more details on asset data in the next tutorial, but for now, the most important thing to understand is that you get back pages of results (by default, a page returns 50 assets), and as long as the `cursor` field is not empty, a page to receive (having provided the cursor as a query parameter) is like the following:
 
 ```shell
 curl --location --request GET 'https://developer-stg.api.autodesk.com/exchange/v1/collections/co.cjm3cQPdRBGKft6IWqTDdQ/exchanges/474b17e1-0a39-3577-a349-0dccfd8680f4/assets:sync?cursor='$CURSOR \
