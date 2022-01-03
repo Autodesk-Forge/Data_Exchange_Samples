@@ -142,7 +142,7 @@ Having this model and the knowledge you got so far, you can extract all relation
 The data exchange created out of **SHARE - Floors + Roof** contains 122 assets and 185 relationships (the dump can be found [here](./dump/Floor_n_roof)). You can go with data mining further and notice that the breakdown is the following:
 
 | Assets        |      Type     			                   | Count |
-|---------------|:----------------------------------------:|------:|
+|---------------|:----------------------------------------|:------:|
 | 			      | autodesk.design:assets.design-1.0.0      | 41    |
 | 			      | autodesk.design:assets.geometry-1.0.0    | 10    |
 | 			      | autodesk.design:assets.instance-1.0.0    | 30    |
@@ -191,7 +191,7 @@ If you search all relationships which this asset is part of, you can notice that
 Looking at the destination of all these relations, you can see that they connect to two types of assets as follows:
 
 |  Asset Type | Count   |
-|---|:-:|
+|:---|:-:|
 |  autodesk.design:assets.instance-1.0.0   | 30  |
 |  autodesk.design:assets.group-1.0.0   | 21  |
 
