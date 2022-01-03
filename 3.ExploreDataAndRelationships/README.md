@@ -59,7 +59,7 @@ Based on the entities `type`, in `components` section, it can contain one or mor
 - autodesk.design:components.type-1.0.0
 - autodesk.design:components.unit-1.0.0
 
-In what follows, let's look closer at assets and relationships, see of what `type` each one can be, what set of components each type holds, as well as the role and relations between assets.
+In what follows, let's look closer at assets and relationships, see what `type` each one can be, what set of components each type holds, as well as the role and relations between assets.
 
 
 ### Assets
