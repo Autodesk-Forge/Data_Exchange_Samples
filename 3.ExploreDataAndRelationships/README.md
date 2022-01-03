@@ -83,7 +83,7 @@ Assets are the entities whose primary scope is to store properties. In Data Exch
 
  The `type` denotes the role of the asset and determines the type of components it can have and consequently what kind of properties it can store.
  
- In case of assets, the componets can be one or more of the following type:
+ In case of assets, the components can be one or more of the following type:
 
 - autodesk.design:assets.binary-1.0.0
 - autodesk.design:components.base-1.0.0
@@ -95,6 +95,8 @@ Assets are the entities whose primary scope is to store properties. In Data Exch
 - autodesk.design:components.renderstyle.property-1.0.0
 - autodesk.design:components.transformation-1.0.0
 - autodesk.design:components.unit-1.0.0
+
+TODO: Show where to get the schema description, when it will be available through public FSS.
 
 
 As the simplest example, an asset of type `autodesk.design:assets.binary-1.0.0` will have only one component `autodesk.design:assets.binary-1.0.0` and this is enough to fulfil its role of storing data related to location, status and type of the binary data.
