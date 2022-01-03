@@ -424,7 +424,7 @@ Digging further into assets related to what we have so far, we find that what fo
 
 
 
-In [next tutorial](), we will see how to use the exchange container data to get the list of assets, relationships, snapshots and revisions.
+In [next tutorial](), we will see what is the purpose of snapshots and revisions, as. well as how to easily identify the difference between two versions of the same exchange.
 
 
 Please refer to this page for more details: [Data Exchange](https://stg.forge.autodesk.com/en/docs/fdxs/v1/reference/quick_reference/fdxs-getrelationshipsyncurls-GET/?sha=forge_fdxs_master_preview)
