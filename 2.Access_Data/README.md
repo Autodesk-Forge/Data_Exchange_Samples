@@ -37,7 +37,7 @@ Downloading the entire data is intuitive, and each type of entity (e.g., assets,
 
 To download the assets, you need to use [v1/collections/{collectionId}/exchanges/{exchangeId}/assets:sync](https://stg.forge.autodesk.com/en/docs/fdxs/v1/reference/quick_reference/fdxs-getassets-GET/?sha=forge_fdxs_master_preview), having a token with `data:read` scope:
 
-```shell
+```
 curl 'https://developer.api.autodesk.com/exchange/v1/collections/'$COLLECTION_ID'/exchanges/'$EXCHANGE_ID'/assets:sync' \
 --header 'Authorization: Bearer '$TOKEN
 ```
@@ -47,7 +47,6 @@ where `TOKEN` is the env variable holding your access token, and `COLLECTION_ID`
 The above call provides a response similar to the following:
 
 ```
-json
 {
     "pagination": {
         "cursor": "7b22637...7d",
@@ -82,7 +81,7 @@ json
 
 For brevity, the output was trimmed. You can see more details on asset data in the next tutorial, but for now, the most important thing to understand is that you get back pages of results (by default, a page returns 50 assets), and as long as the `cursor` field is not empty, a page to receive (having provided the cursor as a query parameter) is like the following:
 
-```shell
+```
 curl --location --request GET 'https://developer-stg.api.autodesk.com/exchange/v1/collections/co.cjm3cQPdRBGKft6IWqTDdQ/exchanges/474b17e1-0a39-3577-a349-0dccfd8680f4/assets:sync?cursor='$CURSOR \
 --header 'Authorization: Bearer '$TOKEN 
 ```
@@ -91,7 +90,7 @@ This kind of sequential query could be daunting, especially if the source view c
 
 For this very purpose, there is a way to facilitate parallel retrieval of data by calling [v1/collections/{collectionId}/exchanges/{exchangeId}/assets:sync-urls](https://stg.forge.autodesk.com/en/docs/fdxs/v1/reference/quick_reference/fdxs-getassetsyncurls-GET/?sha=forge_fdxs_master_preview) as follows:
 
-```shell
+```
 curl 'https://developer.api.autodesk.com/exchange/v1/collections/'$COLLECTION_ID'/exchanges/'$EXCHANGE_ID'/assets:sync-url' \
 --header 'Authorization: Bearer '$TOKEN
 ```
@@ -99,7 +98,6 @@ curl 'https://developer.api.autodesk.com/exchange/v1/collections/'$COLLECTION_ID
 This call requests the data in form of a list of URLs to pages containing the data, creating an output similar to the following:
 
 ```
-json
 {
     "pagination": {
         "cursor": "",
@@ -135,7 +133,7 @@ However, in case you expect a smaller (max 50) number of assets (e.g., when usin
 
 To download the relationships, you need to use [v1/collections/{collectionId}/exchanges/{exchangeId}/relationships:sync](https://stg.forge.autodesk.com/en/docs/fdxs/v1/reference/quick_reference/fdxs-getrelationships-GET/?sha=forge_fdxs_master_preview), having a token with `data:read` scope:
 
-```shell
+```
 curl 'https://developer.api.autodesk.com/exchange/v1/collections/'$COLLECTION_ID'/exchanges/'$EXCHANGE_ID'/relationships:sync' \
 --header 'Authorization: Bearer '$TOKEN
 ```
@@ -143,7 +141,6 @@ curl 'https://developer.api.autodesk.com/exchange/v1/collections/'$COLLECTION_ID
 The above call provides a response similar to the following:
 
 ```
-json
 {
     "pagination": {
         "cursor": "7b226...764227d",
@@ -189,7 +186,7 @@ A revision can be seen as a sort of version, but you will see that it's more tha
 
 To get the snapshot, you need to use [v1/collections/{collectionId}/exchanges/{exchangeId}/snapshots:exchange](https://stg.forge.autodesk.com/en/docs/fdxs/v1/reference/quick_reference/fdxs-getexchangesnapshot-GET/?sha=forge_fdxs_master_preview), having a token with `data:read` scope:
 
-```shell
+```
 curl 'https://developer.api.autodesk.com/exchange/v1/collections/'$COLLECTION_ID'/exchanges/'$EXCHANGE_ID'/snapshots:exchange' \
 --header 'Authorization: Bearer '$TOKEN
 ```
@@ -199,7 +196,6 @@ The above call provides a response similar to the following:
 TODO: THIS IS EMPTY. REPLACE WHEN THE IMPLEMENTATION WILL BE READY.
 
 ```
-json
 {
     "createdBy": {
         "serviceId": "CsBcAd522LYGDZmszDtALE8iuzpKPtXX",
@@ -252,7 +248,6 @@ To be able to use filtering at its best, it's important to know the structure of
 In context of Data Exchange,- collections, scenes, assets, relationships, and snapshots are named entities and have the same kernel:
 
 ```
-json
 {
     "id": "123abc",
     "type": "autodesk.fdx:exchange.<<entity>>-1.0.0",
@@ -295,7 +290,6 @@ In context of Data Exchange, this task of traversing the graph is made through c
 For example, the minimum body is like the following:
 
 ```
-shell
 {
         "startAssets": [
           {
@@ -308,7 +302,6 @@ shell
 and returns all assets related to the starting assets along with relationships they're part of (between `from` and `to` relationships), as well as the sub-graph topology:
 
 ```
-json
 {
     "topology": {
         "nodes": [
