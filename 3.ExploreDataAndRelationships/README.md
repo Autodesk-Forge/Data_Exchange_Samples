@@ -48,18 +48,18 @@ The `components` is the part where the properties are stored using the schema ba
 
 Based on the entities `type`, in `components` section it contain one or more properties defined by schemas like:
 
-- autodesk.design:components.base-1.0.0: 192
-- autodesk.design:components.color.rgba-1.0.0: 9
-- autodesk.design:components.geometry-1.0.0: 37
-- autodesk.design:components.modelstructure-1.0.0: 153
-- autodesk.design:components.parameter-1.0.0: 65
-- autodesk.design:components.referenceNameOnlyParameter-1.0.0: 50
-- autodesk.design:components.referenceParameter-1.0.0: 58
-- autodesk.design:components.renderstyle.property-1.0.0: 9
-- autodesk.design:components.subasset-1.0.0: 84
-- autodesk.design:components.transformation-1.0.0: 95
-- autodesk.design:components.type-1.0.0: 42
-- autodesk.design:components.unit-1.0.0: 154
+- autodesk.design:components.base-1.0.0
+- autodesk.design:components.color.rgba-1.0.0
+- autodesk.design:components.geometry-1.0.0
+- autodesk.design:components.modelstructure-1.0.0
+- autodesk.design:components.parameter-1.0.0
+- autodesk.design:components.referenceNameOnlyParameter-1.0.0
+- autodesk.design:components.referenceParameter-1.0.0
+- autodesk.design:components.renderstyle.property-1.0.0
+- autodesk.design:components.subasset-1.0.0
+- autodesk.design:components.transformation-1.0.0
+- autodesk.design:components.type-1.0.0
+- autodesk.design:components.unit-1.0.0
 
 In what follows, we will look closer at assets and relationships, see of what `type` each one can be, what set of components each type holds, as well as the role and relations between assets.
 
@@ -392,7 +392,11 @@ Following further the relationships from "Warm Roof - Timber" group asset, we fi
 At first site , it looks like these two assets hold the information that corresponds to the properties of the "Basic Roof" element from Revit design, but a closer look will unvail a lot of information that was not previously coming through the Model Derivative service.
 ![](./img/panel.png)
 
-Digging further into assets related to what we have so far, we find that what follows next is related to geometry, binary files and rendering styles and for the moment are are not of much interest, but helps forming the picture how everything is arranged and how and where to llok for needed properties:
+TODO: Need to explain why the properties are split between two assets and what is the difference between containment and reference relationships.
+
+ENDTODO
+
+Digging further into assets related to what we have so far, we find that what follows next is related to geometry, binary files and rendering styles and for the moment are not of much interest, but helps forming the picture how everything is arranged and how and where to look for needed properties:
 
 ![](./img/complete.png)
 
