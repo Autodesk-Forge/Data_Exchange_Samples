@@ -66,13 +66,13 @@ In what follows, let's look closer at assets and relationships, see what `type` 
 
 Assets are the entities whose primary scope is to store properties. In the Data Exchange environment, an asset can be one of the following seven types:
 
- - 'autodesk.design:assets.binary-1.0.0'
- - 'autodesk.design:assets.instance-1.0.0'
- - 'autodesk.design:assets.geometry-1.0.0'
- - 'autodesk.design:assets.renderstyle-1.0.0'
- - 'autodesk.design:assets.design-1.0.0'
- - 'autodesk.design:assets.binary-1.0.0'
- - 'autodesk.design:assets.group-1.0.0'
+ - autodesk.design:assets.binary-1.0.0
+ - autodesk.design:assets.instance-1.0.0
+ - autodesk.design:assets.geometry-1.0.0
+ - autodesk.design:assets.renderstyle-1.0.0
+ - autodesk.design:assets.design-1.0.0
+ - autodesk.design:assets.binary-1.0.0
+ - autodesk.design:assets.group-1.0.0
 
  The `type` denotes the role of the asset, and determines the type of components it can have and, consequently, what kind of properties it can store.
  
