@@ -119,8 +119,8 @@ indicating the direction of relationship, the type, and the `id` of the "connect
 
 The relationships can be of the following types:
 
-- 'autodesk.design:relationship.reference-1.0.0'
-- 'autodesk.design:relationship.containment-1.0.0'
+- autodesk.design:relationship.reference-1.0.0
+- autodesk.design:relationship.containment-1.0.0
 
 As in case with assets, the `type` of the relationship indicates its role and the set of components it can have (out of the following component types) as follows:
 
@@ -143,16 +143,15 @@ The data exchange created out of **SHARE - Floors + Roof** contains 122 assets a
 
 | Assets        |      Type     			                   | Count |
 |---------------|:----------------------------------------:|------:|
-| 			      |'autodesk.design:assets.design-1.0.0'     | 41    |
-| 			      |'autodesk.design:assets.geometry-1.0.0'   | 10    |
-| 			      |'autodesk.design:assets.instance-1.0.0'   | 30    |
-|    		      |'autodesk.design:assets.group-1.0.0'      | 21    |
-|               |'autodesk.design:assets.binary-1.0.0'     | 11    |
-|    		      |'autodesk.design:assets.renderstyle-1.0.0'|  9    |
-|    		      |							                   |       | 
+| 			      | autodesk.design:assets.design-1.0.0      | 41    |
+| 			      | autodesk.design:assets.geometry-1.0.0    | 10    |
+| 			      | autodesk.design:assets.instance-1.0.0    | 30    |
+|    		      | autodesk.design:assets.group-1.0.0       | 21    |
+|               | autodesk.design:assets.binary-1.0.0      | 11    |
+|    		      | autodesk.design:assets.renderstyle-1.0.0 |  9    |
 | Relationships |							                   |       |
-|    		      |'autodesk.design:relationship.containment-1.0.0'|   81    | 
-|    		      |'autodesk.design:relationship.reference-1.0.0'| 104      | 
+|    		      | autodesk.design:relationship.containment-1.0.0 |   81    | 
+|    		      | autodesk.design:relationship.reference-1.0.0 | 104      | 
 
  
 
@@ -193,8 +192,8 @@ Looking at the destination of all these relations, you can see that they connect
 
 |  Asset Type | Count   |
 |---|:-:|
-| 'autodesk.design:assets.instance-1.0.0'  | 30  |
-| 'autodesk.design:assets.group-1.0.0'  | 21  |
+|  autodesk.design:assets.instance-1.0.0   | 30  |
+|  autodesk.design:assets.group-1.0.0   | 21  |
 
 Starting with 'autodesk.design:assets.group-1.0.0' type assets, you can find among them an asset with the following content:
 
