@@ -32,8 +32,7 @@ To get the Hub ID, use the `GET https://developer.api.autodesk.com/project/v1/hu
 
 For example:
 
-```
-shell
+```shell
 curl 'https://developer.api.autodesk.com/project/v1/hubs' \
 --header 'Authorization: Bearer '$TOKEN
 ```
@@ -42,8 +41,7 @@ where `TOKEN` is the env variable holding your access token.
 
 The above call gives you a response similar to the following:
 
-```
-json
+```json
 {
  
   ...
@@ -72,8 +70,7 @@ Note that certain Forge Apps can be provisioned in multiple accounts. Thus, afte
 
 Having the Hub ID, you can now retrieve the list of projects available on that hub by calling this command:
 
-```
-shell
+```shell
 curl 'https://developer.api.autodesk.com/project/v1/hubs/'$HUB_ID'/projects' \
 --header 'Authorization: Bearer '$TOKEN
 ```
@@ -82,8 +79,7 @@ where `HUB_ID` is the ID in the form of `b.5c07c84c-bbd9-476e-8712-547f74c5b76b`
 
 The above call gives you a response similar to the following:
 
-```
-json
+```json
 {
     ...
 
@@ -116,16 +112,14 @@ In this response payload, you are interested in the `id` of the needed project.
 
 Having the Project ID, you have to get the top folders, out of which you are interested in "Project Files", by calling this command:
 
-```
-shell
+```shell
 curl  'https://developer.api.autodesk.com/project/v1/hubs/'$HUB_ID'/projects/'$PROJECT_ID'/topFolders' \
 --header 'Authorization: Bearer '$TOKEN
 ```
 
 This creates an output similar to the following:
 
-```
-json
+```json
 {
     ...
     "data": [
@@ -154,16 +148,14 @@ Nevertheless, it resumes to retrieving iteratively, starting with a top folder a
 
 All of these iterative calls have the format like the following:
 
-```
-shell
+```shell
 curl 'https://developer.api.autodesk.com/data/v1/projects/'$PROJECT_ID'/folders/'$FOLDER_ID'/contents' \
 --header 'Authorization: Bearer '$TOKEN
 ```
 
 ultimately providing the content of the folder where the item referencing the needed exchange resides:
 
-```
-json
+```json
 {
    ...
     "data": [
@@ -201,8 +193,7 @@ The item pointing to the needed exchange can be identified based on the name giv
 
 Having the needed item, its ID allows you to get the exchange container using the Data Exchange API by calling this command:
 
-```
-shell
+```shell
 curl 'https://developer-stg.api.autodesk.com/exchange/v1/exchanges?filters=attribute.exchangeFileUrn=='$ITEM_ID \
 --header 'Authorization: Bearer '$TOKEN
 ```
@@ -211,8 +202,7 @@ where `ITEM_ID` is the item ID of `items:autodesk.bim360:FDX` type.
 
 The above call returns an output (trimmed for brevity), similar to the following:
 
-```
-json
+```json
 
 {
     ...
