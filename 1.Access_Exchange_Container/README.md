@@ -294,7 +294,7 @@ These two elements are essential because all subsequent calls made through Data 
 
 However, the rest of the received payload also contains a lot of useful information, such as the following:
 
-- The type of the exchange container is set to `autodesk.fdx.space:exchangecontainer-1.0.0` which indicates that it's a "Space" type item and should contain at least `attributes` and `components`.
+- The type of the exchange container is set to `autodesk.fdx.space:exchangecontainer-1.0.0` which indicates that it's a **Space** type item and should contain at least `attributes` and `components`.
 - `attributes` are system-specific properties, but can and should be used to filter the item.
 	
    In the above call, you used the query string `filters=attribute.exchangeFileUrn=='$ITEM_ID` to identify the needed exchange container by the `exchangeFileUrn` attribute. 
