@@ -1,18 +1,16 @@
 # Understand the structure of exchange data
 
-This tutorial will help with understanding on how the data is structured using assets and relationships and the role of snapshots and revisions.
+This tutorial will help with understanding on how the data is structured using assets and relationships and the role of snapshots and revisions:
 
 - [Intro](#intro)
-
 - [Data Graph](#data_graph)
-
 
 
 ## Intro
 
-Along previous tutorial we mentioned that the data within an exchange container is organised as a graph. It is a collection of assets, grouped in spaces and linked through relationships.
+In a previous tutorial we mentioned that the data within an exchange container is organized as a graph. It is a collection of assets, grouped in spaces and linked through relationships.
 
-Collections, assets, spaces, relationships and snapshots share the same structure - being generalized as enteties. Entities have the following schema: 
+Collections, assets, spaces, relationships and snapshots share the same structure - being generalized as entities. Entities have the following schema: 
 
 ```json
 {
@@ -63,10 +61,6 @@ Based on the entities `type`, in `components` section it contain one or more pro
 
 In what follows, we will look closer at assets and relationships, see of what `type` each one can be, what set of components each type holds, as well as the role and relations between assets.
 
-
-
-
-
 =================
 
 ### Assets
@@ -99,15 +93,15 @@ Assets are the entities whose primary scope is to store properties. In Data Exch
 TODO: Show where to get the schema description, when it will be available through public FSS.
 
 
-As the simplest example, an asset of type `autodesk.design:assets.binary-1.0.0` will have only one component `autodesk.design:assets.binary-1.0.0` and this is enough to fulfil its role of storing data related to location, status and type of the binary data.
+As the simplest example, an asset of type `autodesk.design:assets.binary-1.0.0` will have only one component `autodesk.design:assets.binary-1.0.0` and this is enough to fulfill its role of storing data related to location, status and type of the binary data.
 
 TODO: Explain the `autodesk.design:components.base-1.0.0` component which is present in all except binary assets.
 
-ENDTODO:
+ENDTODO
 
 ### Relationships
 
-Relationships are enteties whose primary scope is to keep track of "connections" between different assets. For this purpose, additional to the fields general to enteties, it has also two aditional special fields:
+Relationships are entities whose primary scope is to keep track of "connections" between different assets. For this purpose, additional to the fields general to entities, it has also two additional special fields:
 
 ```json
 "from": {
@@ -122,7 +116,7 @@ Relationships are enteties whose primary scope is to keep track of "connections"
 },
 ```
 
-Indicating the direction of relationship, the type and the `id` of the "connected" enteties.
+Indicating the direction of relationship, the type and the `id` of the "connected" entities.
 
 
 The relationships can be of the following types:
@@ -130,25 +124,22 @@ The relationships can be of the following types:
 - 'autodesk.design:relationship.reference-1.0.0'
 - 'autodesk.design:relationship.containment-1.0.0'
 
-
-As in case with assets, the `type` of the relationship indicates it's role and the set of components it can have (out of the following component types):
+As in case with assets, the `type` of the relationship indicates its role and the set of components it can have (out of the following component types):
 
 - autodesk.design:components.modelstructure-1.0.0
 - autodesk.design:components.subasset-1.0.0
 - autodesk.design:components.type-1.0.0
 
-
 ---------------
-
 
 ## Data Graph
 
 
-To simplify the task of understanding the role of each asset in the graph and the relationships, we will use an exchange we created based on Revit view. For illustration, we will rely on Forge Viewer and show at least the match between data available through Model Derivative and data available through Data Exchange.
+To simplify the task of understanding the role of each asset in the graph and the relationships, we will use an exchange we created based on the Revit view. For illustration, we will rely on Forge Viewer and show at least the match between data available through Model Derivative and data available through Data Exchange.
 
 ![](./img/revit_to_fdx.png)
 
-Having this model and the knowledge we got so far, we can extract all relationshisps and all assets (as explained in previous tutorial), allowing us to get the basic stats.
+Having this model and the knowledge we got so far, we can extract all relationships and all assets (as explained in previous tutorial), allowing us to get the basic stats.
 
 The data exchange created out of "SHARE- Floors + Roof" contains 122 assets and 185 relationships (the dump can be found [here](./dump/Floor_n_roof)). We can go with data mining further and notice that the breakdown is the following:
 
@@ -167,14 +158,14 @@ The data exchange created out of "SHARE- Floors + Roof" contains 122 assets and 
 
  
 
-Traversing the entire graph (122 assets and 185 relationships) will be dounting, so we will explore just a small subset of it, but detailed enough, to be able to get the full picture.
+Traversing the entire graph (122 assets and 185 relationships) will be daunting, so we will explore just a small subset of it, but detailed enough, to be able to get the full picture.
 
-Let us identify the assets and relationships participating in storing data of `Basic Roof` part, including all the elements present in the hierarchy to it.
+Let us identify the assets and relationships participating in storing data of the `Basic Roof` part, including all the elements present in the hierarchy to it.
 
 ![](./img/start.png)
 
 
-Within Data Exchange domain, any data graph formed by the assets and relationships always has a root asset.
+Within the Data Exchange domain, any data graph formed by the assets and relationships always has a root asset.
 The `id` of the root asset can be found when retrieving the relationships, at the end of the payload, similar to the following:
 
 ```json
@@ -198,10 +189,10 @@ For this data exchange, the root asset has the `id`=`1F27591A01D9596B97522612977
             }
           }
 ```
-If we search all relationships this asset is part of, we notice that it participate in 51 relationships, in all of them it is source of destinations and all the relationships are of type `autodesk.design:relationship.containment-1.0.0`.
+If we search all relationships this asset is part of, we notice that it participates in 51 relationships, in all of them it is the source of destinations and all the relationships are of type `autodesk.design:relationship.containment-1.0.0`.
 Looking at the destination of all these relations, we notice that they connect to two types of assets:
 
-|  Assset Type | Count   |
+|  Asset Type | Count   |
 |---|:-:|
 | 'autodesk.design:assets.instance-1.0.0'  | 30  |
 | 'autodesk.design:assets.group-1.0.0'  | 21  |
@@ -281,7 +272,7 @@ Following further the relationships from "Warm Roof - Timber" group asset, we fi
 
 1. Reference relationship to an `autodesk.design:assets.instance-1.0.0` type asset:
 
-	**Note**: The output was trimmed for brevety: 
+	**NOTE:** The output was trimmed for brevity: 
 
 	```json
 	
@@ -339,13 +330,10 @@ Following further the relationships from "Warm Roof - Timber" group asset, we fi
           }}}}}
           
 	```
-	
-	
-
 
 2. Containment relationship to an `'autodesk.design:assets.design-1.0.0'` type asset:
 
-		**Note**: The output was trimmed for brevety: 
+	**NOTE:** The output was trimmed for brevity: 
 
 	```json
 	{
@@ -391,7 +379,7 @@ Following further the relationships from "Warm Roof - Timber" group asset, we fi
 	```
 
 
-At first site , it looks like these two assets hold the information that corresponds to the properties of the "Basic Roof" element from Revit design, but a closer look will unvail a lot of information that was not previously coming through the Model Derivative service.
+At first site , it looks like these two assets hold the information that corresponds to the properties of the "Basic Roof" element from Revit design, but a closer look will unveil a lot of information that was not previously coming through the Model Derivative service.
 ![](./img/panel.png)
 
 TODO: Need to explain why the properties are split between two assets and what is the difference between containment and reference relationships.
@@ -402,35 +390,9 @@ Digging further into assets related to what we have so far, we find that what fo
 
 ![](./img/complete.png)
 
-
-
-
-
-
-
-
-
-
-
-
 -----------
 
+In the [next tutorial](), we will see what is the purpose of snapshots and revisions, as. well as how to easily identify the difference between two versions of the same exchange.
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-In [next tutorial](), we will see what is the purpose of snapshots and revisions, as. well as how to easily identify the difference between two versions of the same exchange.
-
-
-Please refer to this page for more details: [Data Exchange](https://stg.forge.autodesk.com/en/docs/fdxs/v1/reference/quick_reference/fdxs-getrelationshipsyncurls-GET/?sha=forge_fdxs_master_preview)
+Refer to this page for more details: [Data Exchange](https://stg.forge.autodesk.com/en/docs/fdxs/v1/reference/quick_reference/?sha=forge_fdxs_master_preview).
