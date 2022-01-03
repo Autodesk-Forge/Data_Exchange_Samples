@@ -61,7 +61,6 @@ Based on the entities `type`, in `components` section, it can contain one or mor
 
 In what follows, let's look closer at assets and relationships, see of what `type` each one can be, what set of components each type holds, as well as the role and relations between assets.
 
-=================
 
 ### Assets
 
@@ -375,7 +374,7 @@ Following further the relationships from "Warm Roof - Timber" group asset, you f
                 "parameterValue": {
                   "String": {
                     "value": "Warm Roof - Timber"}}}}
-}}}}}
+        }}}}}
 	```
 
 At first sight, it looks like these two assets hold the information that corresponds to the properties of the "Basic Roof" element from the Revit design, but a closer look will unveil a lot of information that was not previously coming through the Model Derivative service:
