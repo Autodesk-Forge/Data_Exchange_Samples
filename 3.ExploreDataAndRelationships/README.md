@@ -137,7 +137,7 @@ To simplify the task of understanding the role of each asset in the graph and re
 
 ![](./img/revit_to_fdx.png)
 
-Having this model and the knowledge you got so far, you can extract all relationships and all assets (as explained in the previous tutorial), allowing you to get the basic stats.
+Having this model and the knowledge you got so far, you can extract all relationships and assets (as explained in the previous tutorial), allowing you to get the basic stats.
 
 The data exchange created out of "SHARE- Floors + Roof" contains 122 assets and 185 relationships (the dump can be found [here](./dump/Floor_n_roof)). You can go with data mining further and notice that the breakdown is the following:
 
