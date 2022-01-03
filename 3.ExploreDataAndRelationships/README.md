@@ -3,7 +3,7 @@
 This tutorial will help with understanding on how the data is structured using assets and relationships and the role of snapshots and revisions:
 
 - [Intro](#intro)
-- [Data Graph](#data_graph)
+- [Data Graph](#data-graph)
 
 
 ## Intro
