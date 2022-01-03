@@ -110,7 +110,7 @@ In this response payload, you are interested in the `id` of the needed project.
 
 ### 3. Identify the Folder ID where the source file resides
 
-Having the Project ID, you have to get the top folders, out of which you are interested in "Project Files", by calling this command:
+Having the Project ID, you have to get the top folders, out of which you are interested in **Project Files**, by calling this command:
 
 ```shell
 curl  'https://developer.api.autodesk.com/project/v1/hubs/'$HUB_ID'/projects/'$PROJECT_ID'/topFolders' \
@@ -139,7 +139,7 @@ This creates an output similar to the following:
 }
 ```
 
-In this response payload, you are interested in the `id` of the "Project Files" top folder.
+In this response payload, you are interested in the `id` of the **Project Files** top folder.
 
 ### 4. Show the content of the folder and identify the needed item
 
