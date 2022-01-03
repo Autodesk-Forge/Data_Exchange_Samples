@@ -100,7 +100,7 @@ ENDTODO
 
 ### Relationships
 
-Relationships are entities whose primary scope is to keep track of "connections" between different assets. For this purpose, additional to the fields general to entities, each relationship has also two additional special fields as follows:
+Relationships are entities whose primary scope is to keep track of **connections** between different assets. For this purpose, additional to the fields general to entities, each relationship has also two additional special fields as follows:
 
 ```json
 "from": {
@@ -139,7 +139,7 @@ To simplify the task of understanding the role of each asset in the graph and re
 
 Having this model and the knowledge you got so far, you can extract all relationships and assets (as explained in the previous tutorial), allowing you to get the basic stats.
 
-The data exchange created out of "SHARE- Floors + Roof" contains 122 assets and 185 relationships (the dump can be found [here](./dump/Floor_n_roof)). You can go with data mining further and notice that the breakdown is the following:
+The data exchange created out of **SHARE - Floors + Roof** contains 122 assets and 185 relationships (the dump can be found [here](./dump/Floor_n_roof)). You can go with data mining further and notice that the breakdown is the following:
 
 | Assets        |      Type     			                   | Count |
 |---------------|:----------------------------------------:|------:|
@@ -242,7 +242,7 @@ Having this asset as a start, you can see that it's related to another asset thr
 }}}}}},}
 ```
 
-From this chain, you can conclude that the `autodesk.design:assets.group-1.0.0` (as its name states) is used to store information on "parent nodes" in tree component hierarchies like "Roofs" > "Basic Roof" > "Warm Roof - Timber", and you can deduce that the asset responsible for storing data related to "Warm Roof - Timber" is also an `autodesk.design:assets.group-1.0.0` type asset related to parent node "Basic Roof" through the `autodesk.design:relationship.reference-1.0.0` relationship type. This is indeed the case and the content of this asset is like the following:
+From this chain, you can conclude that the `autodesk.design:assets.group-1.0.0` (as its name states) is used to store information on **parent nodes** in tree component hierarchies like **Roofs > Basic Roof > Warm Roof - Timber**, and you can deduce that the asset responsible for storing data related to **Warm Roof - Timber** is also an `autodesk.design:assets.group-1.0.0` type asset related to parent node **Basic Roof** through the `autodesk.design:relationship.reference-1.0.0` relationship type. This is indeed the case and the content of this asset is like the following:
 
 ```json
 {
@@ -264,11 +264,11 @@ From this chain, you can conclude that the `autodesk.design:assets.group-1.0.0` 
 }}}}}},}
 ```
 
-Thus, the levels of hierarchies "Roofs" > "Basic Roof" > "Warm Roof - Timber" are captured in the graph as "Category" > "Family" > "Type" reference relationships:
+Thus, the levels of hierarchies **Roofs > Basic Roof > Warm Roof - Timber** are captured in the graph as **Category > Family > Type** reference relationships:
 
 ![](./img/groups.png)
 
-Following further the relationships from "Warm Roof - Timber" group asset, you find that apart from two incoming relationships (from the root asset and - the "parent" node), it also has these two outgoing connections:
+Following further the relationships from **Warm Roof - Timber** group asset, you find that apart from two incoming relationships (from the root asset and - the **parent** node), it also has these two outgoing connections:
 
 1. Reference relationship to an `autodesk.design:assets.instance-1.0.0` type asset:
 
@@ -377,7 +377,7 @@ Following further the relationships from "Warm Roof - Timber" group asset, you f
         }}}}}
 	```
 
-At first sight, it looks like these two assets hold the information that corresponds to the properties of the "Basic Roof" element from the Revit design, but a closer look will unveil a lot of information that was not previously coming through the Model Derivative service:
+At first sight, it looks like these two assets hold the information that corresponds to the properties of the **Basic Roof** element from the Revit design, but a closer look will unveil a lot of information that was not previously coming through the Model Derivative service:
 
 ![](./img/panel.png)
 
