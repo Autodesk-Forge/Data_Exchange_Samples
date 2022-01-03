@@ -218,7 +218,7 @@ Starting with 'autodesk.design:assets.group-1.0.0' type assets, you can find amo
 }}}}}},},
 ```
 
-As you can see from components of this asset, it corresponds to the `Roof` node in the "Model Browser" from our model.
+As you can see from components of this asset, it corresponds to the `Roof` node in the **Model Browser** from our model.
 
 Having this asset as a start, you can see that it's related to another asset through `autodesk.design:relationship.reference-1.0.0` relationship type, which also turns out to be an `autodesk.design:assets.group-1.0.0` type asset with the following structure:
 
