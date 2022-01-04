@@ -193,7 +193,7 @@ curl 'https://developer.api.autodesk.com/exchange/v1/collections/'$COLLECTION_ID
 
 The above call provides a response similar to the following:
 
-TODO: THIS IS EMPTY. REPLACE WHEN THE IMPLEMENTATION WILL BE READY.
+<!-- TODO: THIS IS EMPTY. REPLACE WHEN THE IMPLEMENTATION WILL BE READY. -->
 
 ```json
 {
@@ -222,8 +222,8 @@ TODO: THIS IS EMPTY. REPLACE WHEN THE IMPLEMENTATION WILL BE READY.
 }
 ```
 
-TODO: WHEN IMPLEMENTATION BECOMES READY, OUTLINE THE IMPORTANT PARTS.
-TODO: WHEN IMPLEMENTATION BECOMES READY, EXPLAIN THE REVISION CONCEPT.
+<!-- TODO: WHEN IMPLEMENTATION BECOMES READY, OUTLINE THE IMPORTANT PARTS.
+TODO: WHEN IMPLEMENTATION BECOMES READY, EXPLAIN THE REVISION CONCEPT. -->
 
 
 ### 2. Download only parts you need by specifying filters or using the closure queries
@@ -269,7 +269,7 @@ The attributes are mainly used to store key-value system data. Components, on th
 
 For filtering purposes, it's important to understand that both attributes and components fields can be used as a filter.
 
-For example:	
+<!-- For example:	
 
 TODO: WHEN IT WILL BE IMPLEMENTED? ADD EXAMPLES FOR:
 			- assetId=="045CE617E7DF23C864EADB6BB5245823DE1D6043"
@@ -277,7 +277,7 @@ TODO: WHEN IT WILL BE IMPLEMENTED? ADD EXAMPLES FOR:
     		- attribute.ExternalId=="bac06658-19d8-494b-b87a-559081499f8f-000e5925"
     		- entitytype=="autodesk.design:assets.instance-1.0.0"
 
-ENDTODO
+ENDTODO -->
 
 
 #### b. Use closure-queries for a more advanced search
@@ -346,14 +346,14 @@ The `topology` part includes the information on `nodes` (e.g., assets) related t
 In this case, the result is not significantly big, but it also can end up having dozens of assets and even more relationships. Note that bi-directional relationships are represented by two relationships with opposite directions. 
 To narrow down the results, the closure queries support `assetFilters` and `relationshipFilters`, which helps limit the results to assets and relationships respecting the filtering criteria.
 
-TODO: DEVELOP THIS PART WHEN CLOSURE QUERIES WILL BE FINISHED.
+<!-- TODO: DEVELOP THIS PART WHEN CLOSURE QUERIES WILL BE FINISHED.
 	CURRENT STATE THROWS THE FOLLOWING ERRORS:
 			
 			- "The maximum number of assets that can be supplied is 1”, but "startAssets": [] is an array.
 			- "The maximum number of asset filters that can be applied is 0."
 			- "The maximum number of relationship filters that can be applied is 0."
 
-ENDTODO
+ENDTODO -->
 
 	   
 In the [next tutorial](), you will better understand the structure of each entity, and how they form the data graph together.
