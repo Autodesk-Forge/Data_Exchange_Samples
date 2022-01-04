@@ -1,4 +1,4 @@
-# Explore Data and Relationships
+# Explore data and relationships
 
 This tutorial will help you understand how the data is structured using assets and relationships, and the corresponding role played by snapshots and revisions within the Data Exchange:
 
