@@ -1,4 +1,4 @@
-# Access data
+# Access data using the exchange container
 
 This tutorial will allow you, having the Collection ID and Exchange ID found within the exchange container, to further use Data Exchange API to retrieve assets, relationships, snapshots, and revisions:
 
