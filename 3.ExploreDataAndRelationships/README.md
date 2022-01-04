@@ -89,13 +89,11 @@ Assets are the entities whose primary scope is to store properties. In the Data 
 - autodesk.design:components.transformation-1.0.0
 - autodesk.design:components.unit-1.0.0
 
-TODO: Show where to get the schema description, and when it will be available through the public FSS.
+<!-- TODO: Show where to get the schema description, and when it will be available through the public FSS. -->
 
 As the simplest example, an asset of type `autodesk.design:assets.binary-1.0.0` will have only one component `autodesk.design:assets.binary-1.0.0`, and this is enough to fulfill its role of storing data related to location, status, and type of the binary data.
 
-TODO: Explain the `autodesk.design:components.base-1.0.0` component which is present in all, except binary assets.
-
-ENDTODO
+<!-- TODO: Explain the `autodesk.design:components.base-1.0.0` component which is present in all, except binary assets. -->
 
 
 ### Relationships
@@ -380,9 +378,7 @@ At first sight, it looks like these two assets hold the information that corresp
 
 ![](./img/panel.png)
 
-TODO: Need to explain why the properties are split between two assets, and what is the difference between containment and reference relationships.
-
-ENDTODO
+<!-- TODO: Need to explain why the properties are split between two assets, and what is the difference between containment and reference relationships. -->
 
 Digging further into assets related to what you have so far, you find that what follows next is related to geometry, binary files, and rendering styles,- and for the moment, are not of much interest, but helps to form the picture of how everything is arranged and how and where to look for the needed properties:
 
