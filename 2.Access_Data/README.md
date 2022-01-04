@@ -350,8 +350,8 @@ To narrow down the results, the closure queries support `assetFilters` and `rela
 	CURRENT STATE THROWS THE FOLLOWING ERRORS:
 			
 			- "The maximum number of assets that can be supplied is 1”, but "startAssets": [] is an array.
-			- "The maximum number of asset filters that can be applied is 0."
-			- "The maximum number of relationship filters that can be applied is 0."
+			- "The maximum number of asset filters that can be applied is 0"
+			- "The maximum number of relationship filters that can be applied is 0"
 
 ENDTODO -->
 
