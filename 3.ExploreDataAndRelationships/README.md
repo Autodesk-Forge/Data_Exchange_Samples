@@ -1,6 +1,6 @@
 # Explore Data and Relationships
 
-This tutorial will help you understand how the data is structured using assets and relationships, and the role of snapshots and revisions:
+This tutorial will help you understand how the data is structured using assets and relationships, and the corresponding role played by snapshots and revisions within the Data Exchange:
 
 - [Intro](#intro)
 - [Data Graph](#data-graph)
@@ -27,7 +27,7 @@ Collections, assets, spaces, relationships, and snapshots share the same structu
 
 ```
 
-Further, each entity type, based on its functionality, will add new elements to this schema. For example, in case of relationships, there will also be present the `from` and `to` fields, pointing to the entities being in relationship.
+Further, each entity type, based on its functionality, adds new elements to this schema. For example, in case of relationships, there are the `from` and `to` fields present, pointing to the entities within the relationship.
 
 The `attributes` part is used to store the system or application-specific properties, and it's an array of properties with fixed schema as follows:
 
@@ -40,7 +40,7 @@ The `attributes` part is used to store the system or application-specific proper
 },
 ```
 
-The `type` describes the role of the entity in the graph, and the main difference between one type and another (entity of the same group) is usually the set of properties it can store (components it can have).
+The `type` describes the role of the entity in the graph, and the main difference between one type and another (entity of the same group) is usually the set of properties it can store (e.g., components it can have).
 
 The `components` is the part where the properties are stored using the schema-based structure.
 
@@ -59,7 +59,7 @@ Based on the entities `type`, in `components` section, it can contain one or mor
 - autodesk.design:components.type-1.0.0
 - autodesk.design:components.unit-1.0.0
 
-In what follows, let's look closer at assets and relationships, see what `type` each one can be, what set of components each type holds, as well as the role and relations between assets.
+In what follows, let's look closer at assets and relationships, see what `type` each one can be, and what set of components each type holds, as well as the role and relations between assets.
 
 
 ### Assets
@@ -91,14 +91,15 @@ Assets are the entities whose primary scope is to store properties. In the Data 
 
 <!-- TODO: Show where to get the schema description, and when it will be available through the public FSS. -->
 
-As the simplest example, an asset of type `autodesk.design:assets.binary-1.0.0` will have only one component `autodesk.design:assets.binary-1.0.0`, and this is enough to fulfill its role of storing data related to location, status, and type of the binary data.
+As the simplest example, an asset of type `autodesk.design:assets.binary-1.0.0` has only one component `autodesk.design:assets.binary-1.0.0`, and this is enough to fulfill its role of storing data related to location, status, and type of the binary data.
 
 <!-- TODO: Explain the `autodesk.design:components.base-1.0.0` component which is present in all, except binary assets. -->
 
 
 ### Relationships
 
-Relationships are entities whose primary scope is to keep track of **connections** between different assets. For this purpose, additional to the fields general to entities, each relationship has also two additional special fields as follows:
+Relationships are entities whose primary scope is to keep track of **connections** between different assets. 
+For this purpose, additional to the fields common to entities, each relationship has also two additional special fields as follows:
 
 ```json
 "from": {
@@ -113,14 +114,14 @@ Relationships are entities whose primary scope is to keep track of **connections
 },
 ```
 
-indicating the direction of relationship, the type, and the `id` of the "connected" entities.
+indicating the direction of the relationship, its type, and the `id` of the **connected** entities.
 
 The relationships can be of the following types:
 
 - autodesk.design:relationship.reference-1.0.0
 - autodesk.design:relationship.containment-1.0.0
 
-As in case with assets, the `type` of the relationship indicates its role and the set of components it can have (out of the following component types) as follows:
+As in case with assets, the `type` of the relationship indicates its role and the set of components it can have as follows:
 
 - autodesk.design:components.modelstructure-1.0.0
 - autodesk.design:components.subasset-1.0.0
@@ -131,7 +132,8 @@ As in case with assets, the `type` of the relationship indicates its role and th
 
 ## Data Graph
 
-To simplify the task of understanding the role of each asset in the graph and relationships, you will use an exchange created based on the Revit view. For illustration, let's rely on Forge Viewer, and show at least the match between data available through Model Derivative and - through Data Exchange:
+To better understand the role of each asset in the graph and relationships, you can use an exchange which was created based on the Revit view. 
+For illustration, let's rely on Forge Viewer, and show at least the match between data available through Model Derivative and - Data Exchange:
 
 ![](./img/revit_to_fdx.png)
 
@@ -170,7 +172,7 @@ The `id` of the root asset can be found when retrieving the relationships at the
 }
 ```
 
-For this data exchange, the root asset has the `id`=`1F27591A01D9596B97522612977B7BCF88F33EA0`, and after searching it among the assets, you can see that it's a `autodesk.design:assets.design-1.0.0` type asset, and it has the following component:
+For this data exchange, the root asset has the `id`=`1F27591A01D9596B97522612977B7BCF88F33EA0`, and after searching for it among the assets, you can see that it's an `autodesk.design:assets.design-1.0.0` type asset which has the following component:
 
 ```json
 
@@ -185,15 +187,16 @@ For this data exchange, the root asset has the `id`=`1F27591A01D9596B97522612977
           }
 ```
 
-If you search all relationships which this asset is part of, you can notice that it participates in 51 relationships where it's the source of destinations, and all the relationships are of type `autodesk.design:relationship.containment-1.0.0`.
-Looking at the destination of all these relations, you can see that they connect to two types of assets as follows:
+If you search all relationships this asset is part of, you can notice that it participates in 51 relationships where it's set as the destination, and all the relationships are of type `autodesk.design:relationship.containment-1.0.0`.
+
+Looking at the destinations of all these relations, you can see that they connect to two types of assets as follows:
 
 |  Asset Type | Count   |
 |:---|:-:|
 |  autodesk.design:assets.instance-1.0.0   | 30  |
 |  autodesk.design:assets.group-1.0.0   | 21  |
 
-Starting with 'autodesk.design:assets.group-1.0.0' type assets, you can find among them an asset with the following content:
+where starting with 'autodesk.design:assets.group-1.0.0' type assets, you can find an asset among them with the following content:
 
 ```json
 {
@@ -239,7 +242,7 @@ Having this asset as a start, you can see that it's related to another asset thr
 }}}}}},}
 ```
 
-From this chain, you can conclude that the `autodesk.design:assets.group-1.0.0` (as its name states) is used to store information on **parent nodes** in tree component hierarchies like **Roofs > Basic Roof > Warm Roof - Timber**, and you can deduce that the asset responsible for storing data related to **Warm Roof - Timber** is also an `autodesk.design:assets.group-1.0.0` type asset related to parent node **Basic Roof** through the `autodesk.design:relationship.reference-1.0.0` relationship type. This is indeed the case and the content of this asset is like the following:
+From this chain of events, it's safe to conclude that the `autodesk.design:assets.group-1.0.0` (as its name states) is used to store information on **parent nodes** in tree component hierarchies like **Roofs > Basic Roof > Warm Roof - Timber**. You can then deduce that the asset responsible for storing data related to **Warm Roof - Timber** is also an `autodesk.design:assets.group-1.0.0` type asset related to parent node **Basic Roof** through the `autodesk.design:relationship.reference-1.0.0` relationship type. This is indeed the case and the content of this asset is as follows:
 
 ```json
 {
@@ -265,11 +268,11 @@ Thus, the levels of hierarchies **Roofs > Basic Roof > Warm Roof - Timber** are 
 
 ![](./img/groups.png)
 
-Following further the relationships from **Warm Roof - Timber** group asset, you find that apart from two incoming relationships (from the root asset and - the **parent** node), it also has these two outgoing connections:
+Following the relationships from **Warm Roof - Timber** group asset, you can find that apart from two incoming relationships (from the root asset and - the **parent** node), it also has these two outgoing connections:
 
 1. Reference relationship to an `autodesk.design:assets.instance-1.0.0` type asset:
 
-	**NOTE:** The output was trimmed for brevity: 
+	**NOTE:** The output was trimmed for brevity. 
 
 	```json
 	
@@ -329,7 +332,7 @@ Following further the relationships from **Warm Roof - Timber** group asset, you
 
 2. Containment relationship to an `autodesk.design:assets.design-1.0.0` type asset:
 
-	**NOTE:** The output was trimmed for brevity: 
+	**NOTE:** The output was trimmed for brevity. 
 
 	```json
 	{
