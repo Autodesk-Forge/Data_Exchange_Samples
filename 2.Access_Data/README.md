@@ -13,7 +13,7 @@ As mentioned at the end of [Access exchange container](../1.Access_Exchange_Cont
 -  Exchange ID - the ID of the exchange container;
 -  Collection ID - the ID of the collection where the exchange data is stored.
 
-These two IDs can be found within the exchange container, which can be retrieved by following [Access exchange container](../1.Access_Exchange_Container) tutorial.
+These two IDs can be found within the exchange container, which can be retrieved by following the [Access exchange container](../1.Access_Exchange_Container) tutorial.
 
 
 ## Workflow explanation
