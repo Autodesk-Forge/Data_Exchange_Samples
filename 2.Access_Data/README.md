@@ -356,6 +356,6 @@ To narrow down the results, the closure queries support `assetFilters` and `rela
 ENDTODO -->
 
 	   
-In the [next tutorial](), you will better understand the structure of each entity, and how they form the data graph together.
+In the [next tutorial](https://stg.forge.autodesk.com/en/docs/fdxs/v1/tutorials/3_explore_data_and_relationships/?sha=forge_fdxs_master_preview), you will better understand the structure of each entity, and how they form the data graph together.
 
 Refer to this page for more details: [Data Exchange](https://stg.forge.autodesk.com/en/docs/fdxs/v1/reference/quick_reference/?sha=forge_fdxs_master_preview).
