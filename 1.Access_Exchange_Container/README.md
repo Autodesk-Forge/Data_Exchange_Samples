@@ -298,7 +298,7 @@ However, the rest of the received payload also contains a lot of useful informat
 - The type of the exchange container is set to `autodesk.fdx.space:exchangecontainer-1.0.0` which indicates that it's a **Space** type item and should contain at least `attributes` and `components`.
 - `attributes` are system-specific properties, but can and should be used to filter the item.
 	
-   In the above call, you used the query string `filters=attribute.exchangeFileUrn=='$ITEM_ID` to identify the needed exchange container by the `exchangeFileUrn` attribute. 
+   In the above call, the query string ``filters=attribute.exchangeFileUrn=='$ITEM_ID`` was used to identify the exchange container by ``exchangeFileUrn`` attribute. 
 
    **NOTE:** For now, only filtering by `exchangeFileUrn` and `exchangeFileVersionUrn` attributes is allowed, but later, it will be extended to all attributes and components, opening the path forward to workflows like "Give me all exchanges created using this `sourceVersionUrn`."
 
