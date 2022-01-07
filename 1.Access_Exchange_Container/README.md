@@ -26,7 +26,7 @@ Thus, to get the exchange container, you need the item corresponding to the exch
  
 -----------
 
-### 1. Get the Hub ID where the source file resides
+### 1. Get the Hub ID where the source file is located
 
 To get the Hub ID, use the `GET https://developer.api.autodesk.com/project/v1/hubs` call, and apply a token with the `data:read` scope.
 
@@ -109,7 +109,7 @@ The above call gives you a response similar to the following:
 In this response payload, you are interested in the `id` of the needed project.
 
 
-### 3. Identify the Folder ID where the source file resides
+### 3. Identify the parent Folder ID of the source file
 
 Having the Project ID, you have to get the top folders, out of which you are interested in **Project Files**, by calling this command:
 
@@ -190,7 +190,7 @@ ultimately providing the content of the folder where the item referencing the ne
 The item pointing to the needed exchange can be identified based on the name given to the exchange, but first, make sure that its `attributes.extension.type` is set to `items:autodesk.bim360:FDX`.
 
 
-### 5. Get the exchange container
+### 5. Use Data Exchange API to get the exchange container having the needed Item ID
 
 Having the needed item, its ID allows you to get the exchange container using the Data Exchange API by calling this command:
 
