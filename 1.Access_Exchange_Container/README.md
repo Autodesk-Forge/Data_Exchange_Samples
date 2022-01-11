@@ -299,7 +299,7 @@ However, the rest of the received payload also contains a lot of useful informat
 
 - `attributes` are system-specific properties, but can and should be used to filter the item.
 	
-   In the above call,- ``filters=attribute.exchangeFileUrn=='$ITEM_ID`` query string was used to identify the exchange container by ``exchangeFileUrn`` attribute. 
+   In the above call, the ``filters=attribute.exchangeFileUrn=='$ITEM_ID`` query string was used to identify the exchange container by ``exchangeFileUrn`` attribute. 
 
    **NOTE:** For now, only filtering by `exchangeFileUrn` and `exchangeFileVersionUrn` attributes is allowed, but later, it will be extended to all attributes and components, opening the path forward to workflows like "Give me all exchanges created using this `sourceVersionUrn`."
 
