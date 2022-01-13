@@ -59,7 +59,7 @@ Based on the entities `type`, in `components` section, it can contain one or mor
 - autodesk.design:components.type-1.0.0
 - autodesk.design:components.unit-1.0.0
 
-In what follows, let's look closer at assets and relationships, see what `type` each one can be, and what set of components each type holds, as well as the role and relations between assets.
+In what follows, let's look closer at assets and relationships, see what `type` each one can be, and what set of components each type holds, as well as the role and relationships between assets.
 
 
 ### Assets
@@ -189,7 +189,7 @@ For this data exchange, the root asset has the `id`=`1F27591A01D9596B97522612977
 
 If you search all relationships this asset is part of, you can notice that it participates in 51 relationships where it's set as the destination, and all the relationships are of type `autodesk.design:relationship.containment-1.0.0`.
 
-Looking at the destinations of all these relations, you can see that they connect to two types of assets as follows:
+Looking at the destinations of all these relationships, you can see that they connect to two types of assets as follows:
 
 |  Asset Type | Count   |
 |:---|:-:|
