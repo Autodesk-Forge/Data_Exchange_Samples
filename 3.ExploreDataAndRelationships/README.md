@@ -133,7 +133,7 @@ As in case with assets, the `type` of the relationship indicates its role and th
 ## Data Graph
 
 To better understand the role of each asset in the graph and relationships, you can use an exchange which was created based on the Revit view. 
-For illustration, let's rely on Forge Viewer, and show at least the match between data available through Model Derivative and - Data Exchange:
+For illustration, let's rely on Forge Viewer, and show at least the match between data available through Model Derivative and through Data Exchange:
 
 ![](./img/revit_to_fdx.png)
 
