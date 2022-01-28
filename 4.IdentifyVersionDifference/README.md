@@ -8,7 +8,7 @@ This tutorial will help you understand the concept of snapshot and revisions. Th
 
 
 
-## Intro {#intro}
+## Intro
 
 As discussed in the previous tutorials, the data within an exchange container is organized as a graph. It's a collection of assets linked through relationships. The state of the graph is captured in a snapshot, while different states (you can see it as versions) of the graph are retrieved using the snapshot revisions, which act as marks or pointers to a certain graph state.
 
@@ -21,7 +21,7 @@ In this scenario, you will use an exchange created from a view of the Revit file
 In what follows, let's look at how the graph is changing from v1 to v2 and how to identify only the changed entities (assets and relationships).
 
 
-## Data Graph {#data-graph}
+## Data Graph
 
 To better understand how the graph changes from one version to another, take a look first at the stats around graph of v1 of the Data Exchange and its v2:
 
@@ -66,7 +66,7 @@ In case of the instance asset related to wall, you will locate the properties ch
 What we did so far is to manually identify the assets and relationships that changed between the two versions of the Data Exchange, but in what follows, you will see how using snapshot revisions can help spot the graph change in a snap.
 
 
-## Snapshots and revisions {#snapshots-and-revisions}
+## Snapshots and revisions
 
 Each exchange will have just one corresponding snapshot, no matter how many times it was changed (how many versions of the exchange item exists in ACC). The snapshot can be seen as the pointer to the graph, while snapshot revisions can be seen as the markers, or pointers to differnt states of the graph.
 
