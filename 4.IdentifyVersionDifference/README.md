@@ -18,7 +18,7 @@ To better understand the idea of the snapshot and revisions, let us follow how t
 
 In this scenario we will use an exchange created from a view of the Revit file. Then the Revit file was changed by adding a door to a wall and upon save, the exchange created using this Revit file, is automatically updated to reflect the changes.
 
-In what follows, will look on how the graph changed from v1 to v2 and how to identify only the changed entities (assets and relationships).
+In what follows, let us look at how the graph is changing from v1 to v2 and how to identify only the changed entities (assets and relationships).
 
 ## Data Graph
 
