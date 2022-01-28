@@ -194,7 +194,7 @@ where `REVISION_V1_ID` and `REVISION_V2_ID` env variables correspond to `revisio
     "root": "3566AEDB090B9480B03272C8E8D02685571730B6"
 }
 ```
-Where we can notice two categories of assets, specified by the field `operation`:
+In above payload we can notice that the provided assets can fall in three categories, specified by the field `operation`:
 
 - **INSERT** - denotes that the asset was added in this revision compared with the previous state;
 - **MODIFY** - indicates that the asset was present in previous revision, but some data was changed.
