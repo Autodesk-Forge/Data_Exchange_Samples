@@ -10,7 +10,7 @@ This tutorial will help you understand the concept of snapshot and revisions. Th
 
 ## Intro
 
-As discussed in previous tutorials, the data within an exchange container is organized as a graph. It's a collection of assets, linked through relationships. The state of the graph is captured in a snapshot, while different states (you can see it as versions) of the ghraph are retrieved using the snapshot revisions, which act as marks or pointers to a certain graph state.
+As discussed in previous tutorials, the data within an exchange container is organized as a graph. It's a collection of assets, linked through relationships. The state of the graph is captured in a snapshot, while different states (you can see it as versions) of the graph are retrieved using the snapshot revisions, which act as marks or pointers to a certain graph state.
 
 To better understand the idea of the snapshot and revisions, let us follow how the graph is modified when a new version of exchange is created upon change of the source Revit file:
 
