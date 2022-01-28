@@ -17,15 +17,19 @@ The order is important for a soft introduction to Data Exchange API and its inte
     - Get all assets and relationships using paginated or parallel approach; 
     - Use closure queries to filter for needed results.
 3. [Understand the structure of exchange data](./3.ExploreDataAndRelationships):	
-    - Identify different types of assets and relationships, and understand their purpose;
-    - Understand the concept of snapshot and revision.
+    - Identify different types of assets and relationships;
+    - Understand the structure and the role of each asset and relationships type.
+
+4. [Identify the diffence between versions of data exchange](./4.IdentifyVersionDifference):   
+    - Understand the concept of snapshot and revision;
+    - Understand how to use the snapshot revision information to retrieve the assets and relationships changed between revisions.
 
 ---
 
 ## Prerequisites
 
 1. **Forge Account:** Learn how to create a Forge Account, activate subscription, and create an app in [this tutorial](http://learnforge.autodesk.io/#/account/):
-    - Since the exchange data is located within Autodesk Construction Cloud, a three-legged token is required. (TODO: Which scope?).
+    - Since the exchange data is located within Autodesk Construction Cloud, a three-legged `data:read` token is required.
 2. [Node.Js](https://nodejs.org) with version > v14.16.0 and basic knowledge of JavaScript.
 
 
