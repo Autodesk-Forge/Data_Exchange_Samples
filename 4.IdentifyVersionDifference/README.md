@@ -10,13 +10,13 @@ This tutorial will help you understand the concept of snapshot and revisions. Th
 
 ## Intro
 
-As discussed in the previous tutorials, the data within an exchange container is organized as a graph. It's a collection of assets linked through relationships. The state of the graph is captured in a snapshot, while different states (you can see these as versions) of the graph are retrieved using the snapshot revisions which act as marks or pointers to a certain graph state.
+As discussed in the previous tutorials, the data within an exchange container is organized as a graph. It's a collection of assets linked through relationships. The state of the graph is captured in a snapshot, while different states of the graph (you can see these as versions) are retrieved using the snapshot revisions which act as marks or pointers to a certain graph state.
 
 To better understand the idea of a snapshot and revisions, let's follow how the graph is modified when a new exchange version is created upon change of the source Revit file:
 
 ![](./img/compare.png)
 
-In this scenario, you will use an exchange created from a view of the Revit file. The Revit file is then changed by adding a door to a wall, and upon save, the exchange is created using the Revit file, and automatically updated to reflect the changes.
+In this scenario, you will use an exchange created from a view of the Revit file. The Revit file is then changed by adding a door to a wall, and after save, the exchange is created using the Revit file, and automatically updated to reflect the changes.
 
 In what follows, let's look at how the graph is changing from v1 to v2, and how to identify only the changed entities (assets and relationships) during this process.
 
@@ -27,7 +27,7 @@ To better understand how the graph changes from one version to another, take a l
 
 ![](./img/graph_stats.png)
 
-Due to the number of total assets and relationships, its graph representation might be overwhelming, and in this case, you're interested only in the subgraph that has changed from v1 to v2: 
+Due to the number of total assets and relationships, the graph representation might be overwhelming, and in this case, you're interested only in the subgraph that has changed from v1 to v2: 
 
 - autodesk.design:assets.group-1.0.0, 
 - autodesk.design:assets.instance-1.0.0, 
@@ -39,36 +39,36 @@ You can ignore these assets of type for now:
 - autodesk.design:assets.renderstyle-1.0.0,  
 - autodesk.design:assets.geometry-1.0.0.
 
-Before diving into the data graph, take a look at the source Revit file and visually identify the changes from v1 to v2 using the diff tool available in ACC:
+Before diving into the data graph, take a look at the source Revit file, and visually identify the changes from v1 to v2 using the diff tool available in ACC:
 
 ![](./img/diff_tool.png)
 
 **NOTE:** This tool helps you visualize the difference when it comes to geometry, but the main drawback is that it provides no information on what properties have changed. You will see how this is covered by the Data Exchange below.
 
-As you can see from the diff tool, the difference is given by the modification to wall and adding a door, and in version 1 of the exchange, the sub-graph related to these two components looks like the following:
+As the diff tool shows, the difference reflects the modification to the wall and addition of the door, and in version 1 of the exchange, the sub-graph related to these two components looks like the following:
 
 ![](./img/doors_v1.png)
 
 ![](./img/walls_v1.png)
 
-**NOTE:** For brevity purpose, in subgraphs presented above, the relationships and the assets of binary, geometry, and renderStyle types are hidden from subgraph.
+**NOTE:** For brevity purposes, in the subgraphs presented above, the relationships and assets of binary, geometry, and renderStyle types are hidden from subgraphs.
 
-In v2 of the Data Exchange, after the door is added, the subgraph related to the doors changes to:
+In v2 of the Data Exchange, after the door is added, the subgraph related to doors changes as follows:
 
 ![](./img/doors_v2.png)
 
-In case of the wall, however, as there are no hierarchical changes made to the wall in question, the subgraph remains the same, but the metadata changes. To identify the changes, we have to basically compare the `autodesk.design:assets.design-1.0.0 ` and `autodesk.design:assets.instance-1.0.0` type assets related to the wall, and see how they change between versions.
+In case of the wall, however, as there are no hierarchical changes made to the wall in question, the subgraph remains the same, but the metadata changes. To identify the changes, compare the `autodesk.design:assets.design-1.0.0 ` to `autodesk.design:assets.instance-1.0.0` type assets related to the wall, and see how they change between versions.
 
-In case of the instance asset related to wall, you will locate the properties changed from v1 to v2 as follows:
+In case of the instance asset related to the wall, you will locate the properties changed from v1 to v2 as follows:
 
 ![](./img/instance_wall_diff.png)
 
-What we did so far is to manually identify the assets and relationships that changed between the two versions of the Data Exchange, but in what follows, you will see how using snapshot revisions can help spot the graph change in a snap.
+What you did so far is to manually identify the assets and relationships that changed between the two versions of the Data Exchange, but in what follows, you will see how using snapshot revisions can help spot the graph change in a snap.
 
 
 ## Snapshots and revisions
 
-Each exchange will have just one corresponding snapshot, no matter how many times it was changed (how many versions of the exchange item exists in ACC). The snapshot can be seen as the pointer to the graph, while snapshot revisions can be seen as the markers, or pointers to differnt states of the graph.
+Each exchange will have just one corresponding snapshot, no matter how many times it was changed (how many versions of the exchange item exists in ACC). The snapshot can be seen as the pointer to the graph, while snapshot revisions can be seen as the markers or pointers to differnt states of the graph.
 
 The snapshot information can be retrieved using the following call:
 
@@ -102,15 +102,15 @@ which will return information similar to the following:
     "revisionId": "1643217446505_693eb279-0c63-368a-ba69-9b15b140a447",
     "deleted": false
 }
-
 ```
 
-For the moment, the information contained in the snapshot is not useful to us, but the revisions of the snapshot are the ones we are interested in and those can be retrieved having the following call:
+For the moment, the information contained in the snapshot is not useful to you, but the revisions of the snapshot are the ones you are interested in, and these can be retrieved having the following call:
 
 ```shell
 curl 'https://developer.api.autodesk.com/exchange/v1/collections/'$COLLECTION_ID'/exchanges/'$EXCHANGE_ID'/snapshots:exchange/revisions' \
 --header 'Authorization: Bearer '$TOKEN
 ```
+
 which will provide information similar to the following:
 
 ```json
@@ -151,16 +151,15 @@ which will provide information similar to the following:
         }
     ]
 }
-
 ```
 
-From this payload we see in the `result` field that we have two revisions, which can be seen as two markers to the states of the graph. The number of revisions corresponds to the number of exchange item versions we see in ACC or through Data Management API:
+From this payload, you can see in the `result` field that you have two revisions which can be seen as two markers to the states of the graph. The number of revisions corresponds to the number of exchange item versions you see in ACC, or through the Data Management API:
+
 ![](./img/versions.png)
 
-***Note:*** For the time being, to determine which snapshot revision corresponds to which exchange item version you have to either compare the timestamp or relaying on position of the snapshot revision in `results` array.
+**NOTE:** For the time being, to determine which snapshot revision corresponds to which exchange item version you have to either compare the timestamps or rely on positions of the snapshot revisions in the `results` array.
 
-Having the `revisionId` of different versions, we can use them as filters when retrieving assets and relationships, as follows:
-
+Having the `revisionId` of different versions, we can use them as filters when retrieving assets and relationships as follows:
 
 ```shell
 curl 'https://developer.api.autodesk.com/exchange/v1/collections/'$COLLECTION_ID'/exchanges/'$EXCHANGE_ID'/assets:sync?filters=exchange.snapshot.fromRevision==
@@ -168,7 +167,7 @@ curl 'https://developer.api.autodesk.com/exchange/v1/collections/'$COLLECTION_ID
 --header 'Authorization: Bearer '$TOKEN
 ```
 
-where `REVISION_V1_ID` and `REVISION_V2_ID` env variables correspond to `revisionId` of each revision, and it will return back data similar to one that is provided when asking for assets, but the content will be limited only to assets that were inserted or modified in revision specified in `toRevision` compared with one specified in `fromRevision`:
+where `REVISION_V1_ID` and `REVISION_V2_ID` env variables correspond to `revisionId` of each revision which returns back data similar to one that is provided when asking for assets. However, the content is limited only to assets that were inserted or modified in the revision specified in `toRevision` if compared with one specified in `fromRevision`:
 
 ```json
 {
@@ -195,16 +194,16 @@ where `REVISION_V1_ID` and `REVISION_V2_ID` env variables correspond to `revisio
     "root": "3566AEDB090B9480B03272C8E8D02685571730B6"
 }
 ```
-In above payload we can notice that the provided assets can fall in three categories, specified by the field `operation`:
 
-- **INSERT** - denotes that the asset was added in this revision compared with the previous state;
-- **MODIFY** - indicates that the asset was present in previous revision, but some data was changed.
-- **REMOVE** - indicates that the asset no longer exists compared with previous revision.
+In the above payload we can notice that the provided assets can fall in three categories, specified by the field `operation`:
 
-***Note:*** In Forge Data Exchange context, all entities have `revisionId` field, which helps keeping track of different versions of the entity. For example, in case an asset with a certain id, suffers some changes, it will be assigned another revisionId, which can be seen as two versions of the same asset, each holding info specific to their version.
+- **INSERT** - denotes that the asset was added in this revision if compared with the previous state;
+- **MODIFY** - indicates that the asset was present in the previous revision, but some data was changed;
+- **REMOVE** - indicates that the asset no longer exists when compared with the previous revision.
 
+***NOTE:*** In Forge Data Exchange context, all entities have `revisionId` field which helps keeping track of different versions of the entity. For example, in case an asset with a certain ID goes through some changes, it will be assigned another revisionId which can be interpreted as having two versions of the same asset, each holding info specific to their version.
 
-Same thing is valid when retrieving the relationships. A call to 
+The same concept is valid when retrieving the relationships. A call to the following:
 
 ```shell
 curl 'https://developer.api.autodesk.com/exchange/v1/collections/'$COLLECTION_ID'/exchanges/'$EXCHANGE_ID'/relationships:sync?filters=exchange.snapshot.fromRevision==
@@ -212,7 +211,7 @@ curl 'https://developer.api.autodesk.com/exchange/v1/collections/'$COLLECTION_ID
 --header 'Authorization: Bearer '$TOKEN
 ```
 
-will return relationships that were added and removed between mentioned revisions:
+returns relationships that were added and removed between the mentioned revisions:
 
 ```json
 {
@@ -254,39 +253,35 @@ will return relationships that were added and removed between mentioned revision
     ...
   ]
 }
-
 ```
 
-After getting all assets and relationships that form the difference between v1 and v2 we can see from the stats how many new and modified entities we have:
+After getting all assets and relationships that form the difference between v1 and v2, you can see from the stats how many new and modified entities you have:
 
 ![](./img/stats_v1_v2.png)
 
-A breakdown by type of the entity provide a good overview on changes:
+A breakdown by type of the entity provides a good overview on the changes made as follows:
 
 ![](./img/stats_v1_v2b.png)
 
-A brief and modest illustration of important entities that were affected by changes in our data exchange, can be ploted as:
+A brief and modest illustration of important entities that were affected by changes in your Data Exchange can be plotted as follows:
 
 ![](./img/changes.png)
 
-In above chart and in our exploration in general, we ignore (for now) the assets of type `autodesk.design:assets.binary-1.0.0`, `autodesk.design:assets.renderstyle-1.0.0`, `autodesk.design:assets.geometry-1.0.0` and focus only on rest of the assets type which give us a hint on the nature of changes:
+In the chart above and in your exploration in general, you ignore (for now) the assets of type `autodesk.design:assets.binary-1.0.0`, `autodesk.design:assets.renderstyle-1.0.0`, and `autodesk.design:assets.geometry-1.0.0`, and focus instead only on the rest of the asset types which give you a hint on the nature of changes:
 
-- `autodesk.design:assets.group-1.0.0` - change or addition of this type of assets indicates a modification of parts hierarchy. In our example, the group asset was referencing one instance of door and now it references two, which can be observed in Model Browser as:
+- `autodesk.design:assets.group-1.0.0` - change or addition of this type of assets indicates a modification of parts hierarchy. In this example, the group asset was referencing one door instance, and now it references two, which can be observed in the Model Browser as follows:
 	
 	![](./img/structure_change2.png)
 
 
-- `autodesk.design:assets.instance-1.0.0` and `autodesk.design:assets.design-1.0.0` - change or addition of these type of assets indicate that some properties were added or modified. In our example, the properties of the wall changed when we added the door, which was reflected in modification of instance asset containing the instance wall properties:
+- `autodesk.design:assets.instance-1.0.0` and `autodesk.design:assets.design-1.0.0` - change or addition of these type of assets indicate that some properties were added or modified. In our example, the properties of the wall have changed when we added the door, which was reflected in modification of instance asset containing the instance wall properties as follows:
 
 	![](./img/instance_wall_diff.png)
 
 
-To conclude, these hints help in targeting the needed type of changes that you are looking for when dealing with data difference between two revisions (versions). 
-If interested in modification of hierarchical structure of the parts, look for the group assets. If interested in propertie changes, look for the instance and design assets.
-
-
+To conclude, these hints help in targeting the needed type of changes that you are looking for when dealing with data differences between two revisions (versions). 
+If interested in modification of hierarchical structure of the parts, look for the group assets. If interested in property changes, look for the instance and design assets.
 
 -----------
-
 
 Refer to this page for more details: [Data Exchange](https://stg.forge.autodesk.com/en/docs/fdxs/v1/reference/quick_reference/?sha=forge_fdxs_master_preview).
