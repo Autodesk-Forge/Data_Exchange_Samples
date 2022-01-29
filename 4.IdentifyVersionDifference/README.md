@@ -1,6 +1,6 @@
 # Identify the difference between Data Exchange versions
 
-This tutorial will help you understand the concept of snapshot and revisions. This knowledge will be further used to explain how to retrieve the assets and relationships changes between revisions (versions).
+This tutorial will help you understand the concept of snapshot and revisions. This knowledge will be further used to explain how to retrieve the asset and relationship changes between revisions (versions).
 
 - [Intro](#intro)
 - [Data Graph](#data-graph)
