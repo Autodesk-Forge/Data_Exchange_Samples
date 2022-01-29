@@ -1,6 +1,6 @@
 # Identify the difference between Data Exchange versions
 
-This tutorial will help you understand the concept of snapshot and revisions. This knowledge will be further used to explain how to retrieve the assets and relationships changed between revisions (versions).
+This tutorial will help you understand the concept of snapshot and revisions. This knowledge will be further used to explain how to retrieve the assets and relationships changes between revisions (versions).
 
 - [Intro](#intro)
 - [Data Graph](#data-graph)
@@ -10,36 +10,36 @@ This tutorial will help you understand the concept of snapshot and revisions. Th
 
 ## Intro
 
-As discussed in the previous tutorials, the data within an exchange container is organized as a graph. It's a collection of assets linked through relationships. The state of the graph is captured in a snapshot, while different states (you can see it as versions) of the graph are retrieved using the snapshot revisions, which act as marks or pointers to a certain graph state.
+As discussed in the previous tutorials, the data within an exchange container is organized as a graph. It's a collection of assets linked through relationships. The state of the graph is captured in a snapshot, while different states (you can see these as versions) of the graph are retrieved using the snapshot revisions which act as marks or pointers to a certain graph state.
 
-To better understand the idea of the snapshot and revisions, let us follow how the graph is modified when a new version of exchange is created upon change of the source Revit file:
+To better understand the idea of a snapshot and revisions, let's follow how the graph is modified when a new exchange version is created upon change of the source Revit file:
 
 ![](./img/compare.png)
 
-In this scenario, you will use an exchange created from a view of the Revit file. The Revit file is then changed by adding a door to a wall, and upon save, the exchange is created using the Revit file and automatically updated to reflect the changes.
+In this scenario, you will use an exchange created from a view of the Revit file. The Revit file is then changed by adding a door to a wall, and upon save, the exchange is created using the Revit file, and automatically updated to reflect the changes.
 
-In what follows, let's look at how the graph is changing from v1 to v2 and how to identify only the changed entities (assets and relationships).
+In what follows, let's look at how the graph is changing from v1 to v2, and how to identify only the changed entities (assets and relationships) during this process.
 
 
 ## Data Graph
 
-To better understand how the graph changes from one version to another, take a look first at the stats around graph of v1 of the Data Exchange and its v2:
+To better understand how the graph changes from one version to another, take a look first at the stats around graph of v1 of the Data Exchange and compare these to ones of v2:
 
 ![](./img/graph_stats.png)
 
-Due to number of total assets and relationships, its graph representation might be overwhelming, and in this case, you're interested only in the subgraph that has changed from v1 to v2: 
+Due to the number of total assets and relationships, its graph representation might be overwhelming, and in this case, you're interested only in the subgraph that has changed from v1 to v2: 
 
 - autodesk.design:assets.group-1.0.0, 
 - autodesk.design:assets.instance-1.0.0, 
 - autodesk.design:assets.design-1.0.0 
 
-and you can ignore these assets of type for now:
+You can ignore these assets of type for now:
 
 - autodesk.design:assets.binary-1.0.0, 
 - autodesk.design:assets.renderstyle-1.0.0,  
 - autodesk.design:assets.geometry-1.0.0.
 
-Before diving into the data graph, have a look at the source Revit file and visually identify the changes from v1 to v2 using the diff tool available in ACC:
+Before diving into the data graph, take a look at the source Revit file and visually identify the changes from v1 to v2 using the diff tool available in ACC:
 
 ![](./img/diff_tool.png)
 
