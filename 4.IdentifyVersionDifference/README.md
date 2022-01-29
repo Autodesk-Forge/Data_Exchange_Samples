@@ -77,7 +77,7 @@ curl 'https://developer.api.autodesk.com/exchange/v1/collections/'$COLLECTION_ID
 --header 'Authorization: Bearer '$TOKEN
 ```
 
-which will return information similar to the following:
+which returns information similar to the following:
 
 ```json
 {
@@ -111,7 +111,7 @@ curl 'https://developer.api.autodesk.com/exchange/v1/collections/'$COLLECTION_ID
 --header 'Authorization: Bearer '$TOKEN
 ```
 
-which will return information similar to the following:
+which returns information similar to the following:
 
 ```json
 {
