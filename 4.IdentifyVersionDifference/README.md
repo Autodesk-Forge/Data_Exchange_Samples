@@ -68,7 +68,7 @@ What you did so far is to manually identify the assets and relationships that ch
 
 ## Snapshots and revisions
 
-Each exchange will have just one corresponding snapshot, no matter how many times it was changed (how many versions of the exchange item exists in ACC). The snapshot can be seen as the pointer to the graph, while snapshot revisions can be seen as the markers or pointers to differnt states of the graph.
+Each exchange will have just one corresponding snapshot, no matter how many times it was changed (how many versions of the exchange item exists in ACC). The snapshot can be seen as the pointer to the graph, while snapshot revisions can be seen as the markers or pointers to different states of the graph.
 
 The snapshot information can be retrieved using the following call:
 
@@ -201,7 +201,7 @@ In the above payload we can notice that the provided assets can fall in three ca
 - **MODIFY** - indicates that the asset was present in the previous revision, but some data was changed;
 - **REMOVE** - indicates that the asset no longer exists when compared with the previous revision.
 
-**NOTE:** In Forge Data Exchange context, all entities have `revisionId` field which helps keeping track of different versions of the entity. For example, in case an asset with a certain ID goes through some changes, it will be assigned another revisionId which can be interpreted as having two versions of the same asset, each holding info specific to their version.
+**NOTE:** In Forge Data Exchange context, all entities have a `revisionId` field which helps keeping track of different versions of the entity. For example, in case an asset with a certain ID goes through some changes, it will be assigned another revisionId which can be interpreted as having two versions of the same asset, each holding info specific to their version.
 
 The same concept is valid when retrieving the relationships. A call to the following:
 
@@ -274,13 +274,13 @@ In the chart above and in your exploration in general, you ignore (for now) the 
 	![](./img/structure_change2.png)
 
 
-- `autodesk.design:assets.instance-1.0.0` and `autodesk.design:assets.design-1.0.0` - change or addition of these type of assets indicate that some properties were added or modified. In our example, the properties of the wall have changed when we added the door, which was reflected in modification of instance asset containing the instance wall properties as follows:
+- `autodesk.design:assets.instance-1.0.0` and `autodesk.design:assets.design-1.0.0` - change or addition of these types of assets indicate that some properties were added or modified. In our example, the properties of the wall have changed when we added the door, which was reflected in modification of instance asset containing the instance wall properties as follows:
 
 	![](./img/instance_wall_diff.png)
 
 
 To conclude, these hints help in targeting the needed type of changes that you are looking for when dealing with data differences between two revisions (versions). 
-If interested in modification of hierarchical structure of the parts, look for the group assets. If interested in property changes, look for the instance and design assets.
+If interested in modification of the hierarchical structure of the parts, look for the group assets. If interested in property changes, look for the instance and design assets.
 
 -----------
 
