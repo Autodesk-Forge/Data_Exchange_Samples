@@ -193,8 +193,8 @@ Looking at the destinations of all these relationships, you can see that they co
 
 |  Asset Type | Count   |
 |:---|:-:|
-|  autodesk.design:assets.instance-1.0.0   | 30  |
-|  autodesk.design:assets.group-1.0.0   | 21  |
+|  `autodesk.design:assets.instance-1.0.0`   | 30  |
+|  `autodesk.design:assets.group-1.0.0`   | 21  |
 
 where starting with 'autodesk.design:assets.group-1.0.0' type assets, you can find an asset among them with the following content:
 
