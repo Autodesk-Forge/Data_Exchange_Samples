@@ -33,7 +33,7 @@ Due to the number of total assets and relationships, the graph representation mi
 - `autodesk.design:assets.instance-1.0.0`, 
 - `autodesk.design:assets.design-1.0.0`. 
 
-You can ignore these assets of type for now:
+You can ignore changes in these assets of type for now:
 
 - `autodesk.design:assets.binary-1.0.0`, 
 - `autodesk.design:assets.renderstyle-1.0.0`,  
