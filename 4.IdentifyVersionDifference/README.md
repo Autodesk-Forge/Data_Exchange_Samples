@@ -27,17 +27,17 @@ To better understand how the graph changes from one version to another, take a l
 
 ![](./img/graph_stats.png)
 
-Due to the number of total assets and relationships, the graph representation might be overwhelming, and in this case, you're interested only in the subgraph that has changed from v1 to v2: 
+Due to the number of total assets and relationships, the graph representation might be overwhelming, and in this case, you're interested only in the subgraph that has changed from v1 to v2, affecting these assets of type: 
 
-- autodesk.design:assets.group-1.0.0, 
-- autodesk.design:assets.instance-1.0.0, 
-- autodesk.design:assets.design-1.0.0 
+- `autodesk.design:assets.group-1.0.0`, 
+- `autodesk.design:assets.instance-1.0.0`, 
+- `autodesk.design:assets.design-1.0.0`. 
 
 You can ignore these assets of type for now:
 
-- autodesk.design:assets.binary-1.0.0, 
-- autodesk.design:assets.renderstyle-1.0.0,  
-- autodesk.design:assets.geometry-1.0.0.
+- `autodesk.design:assets.binary-1.0.0`, 
+- `autodesk.design:assets.renderstyle-1.0.0`,  
+- `autodesk.design:assets.geometry-1.0.0`.
 
 Before diving into the data graph, take a look at the source Revit file, and visually identify the changes from v1 to v2 using the diff tool available in ACC:
 
