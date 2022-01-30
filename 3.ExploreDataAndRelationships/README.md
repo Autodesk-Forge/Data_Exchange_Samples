@@ -46,18 +46,18 @@ The `components` is the part where the properties are stored using the schema-ba
 
 Based on the entities `type`, in `components` section, it can contain one or more properties defined by schemas like the following:
 
-- autodesk.design:components.base-1.0.0
-- autodesk.design:components.color.rgba-1.0.0
-- autodesk.design:components.geometry-1.0.0
-- autodesk.design:components.modelstructure-1.0.0
-- autodesk.design:components.parameter-1.0.0
-- autodesk.design:components.referenceNameOnlyParameter-1.0.0
-- autodesk.design:components.referenceParameter-1.0.0
-- autodesk.design:components.renderstyle.property-1.0.0
-- autodesk.design:components.subasset-1.0.0
-- autodesk.design:components.transformation-1.0.0
-- autodesk.design:components.type-1.0.0
-- autodesk.design:components.unit-1.0.0
+- `autodesk.design:components.base-1.0.0`
+- `autodesk.design:components.color.rgba-1.0.0`
+- `autodesk.design:components.geometry-1.0.0`
+- `autodesk.design:components.modelstructure-1.0.0`
+- `autodesk.design:components.parameter-1.0.0`
+- `autodesk.design:components.referenceNameOnlyParameter-1.0.0`
+- `autodesk.design:components.referenceParameter-1.0.0`
+- `autodesk.design:components.renderstyle.property-1.0.0`
+- `autodesk.design:components.subasset-1.0.0`
+- `autodesk.design:components.transformation-1.0.0`
+- `autodesk.design:components.type-1.0.0`
+- `autodesk.design:components.unit-1.0.0`.
 
 In what follows, let's look closer at assets and relationships, see what `type` each one can be, and what set of components each type holds, as well as the role and relationships between assets.
 
@@ -66,28 +66,28 @@ In what follows, let's look closer at assets and relationships, see what `type` 
 
 Assets are the entities whose primary scope is to store properties. In the Data Exchange environment, an asset can be one of the following seven types:
 
- - autodesk.design:assets.binary-1.0.0
- - autodesk.design:assets.instance-1.0.0
- - autodesk.design:assets.geometry-1.0.0
- - autodesk.design:assets.renderstyle-1.0.0
- - autodesk.design:assets.design-1.0.0
- - autodesk.design:assets.binary-1.0.0
- - autodesk.design:assets.group-1.0.0
+ - `autodesk.design:assets.binary-1.0.0`
+ - `autodesk.design:assets.instance-1.0.0`
+ - `autodesk.design:assets.geometry-1.0.0`
+ - `autodesk.design:assets.renderstyle-1.0.0`
+ - `autodesk.design:assets.design-1.0.0`
+ - `autodesk.design:assets.binary-1.0.0`
+ - `autodesk.design:assets.group-1.0.0`
 
  The `type` denotes the role of the asset, and determines the type of components it can have and, consequently, what kind of properties it can store.
  
  In case of assets, the components can be one or more of the following types:
 
-- autodesk.design:assets.binary-1.0.0
-- autodesk.design:components.base-1.0.0
-- autodesk.design:components.color.rgba-1.0.0
-- autodesk.design:components.geometry-1.0.0
-- autodesk.design:components.parameter-1.0.0
-- autodesk.design:components.referenceNameOnlyParameter-1.0.0
-- autodesk.design:components.referenceParameter-1.0.0
-- autodesk.design:components.renderstyle.property-1.0.0
-- autodesk.design:components.transformation-1.0.0
-- autodesk.design:components.unit-1.0.0
+- `autodesk.design:assets.binary-1.0.0`
+- `autodesk.design:components.base-1.0.0`
+- `autodesk.design:components.color.rgba-1.0.0`
+- `autodesk.design:components.geometry-1.0.0`
+- `autodesk.design:components.parameter-1.0.0`
+- `autodesk.design:components.referenceNameOnlyParameter-1.0.0`
+- `autodesk.design:components.referenceParameter-1.0.0`
+- `autodesk.design:components.renderstyle.property-1.0.0`
+- `autodesk.design:components.transformation-1.0.0`
+- `autodesk.design:components.unit-1.0.0`
 
 <!-- TODO: Show where to get the schema description, and when it will be available through the public FSS. -->
 
@@ -123,9 +123,9 @@ The relationships can be of the following types:
 
 As in case with assets, the `type` of the relationship indicates its role and the set of components it can have as follows:
 
-- autodesk.design:components.modelstructure-1.0.0
-- autodesk.design:components.subasset-1.0.0
-- autodesk.design:components.type-1.0.0
+- `autodesk.design:components.modelstructure-1.0.0`
+- `autodesk.design:components.subasset-1.0.0`
+- `autodesk.design:components.type-1.0.0`
 
 ---------------
 
