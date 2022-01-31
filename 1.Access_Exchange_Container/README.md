@@ -307,7 +307,7 @@ However, the rest of the received payload also contains a lot of useful informat
     2. `autodesk.fdx:contract.revitViewGeometry-1.0.0`, holding the data regarding the exchange contract - in this case, it's the name and ID of the view within the source file used to create the exchange.
     3. `autodesk.fdx:host.acc-1.0.0`, holding the data regarding the name, ID, and location of the item pointing to the current exchange container.
    
- **NOTE:** For now, only filtering by `exchangeFileUrn` and `sourceFileUrn` attributes is allowed, but later, it might be extended to all attributes and components.
+ 	**NOTE:** For now, only filtering by `exchangeFileUrn` and `sourceFileUrn` attributes is allowed, but later, it might be extended to all attributes and components.
    
 	Using the `sourceFileUrn` as a filter allows creating workflows around cases like "Give me all exchanges created using this Revit file". For example, having the URN of a Revit file, we can make this call:
 	
