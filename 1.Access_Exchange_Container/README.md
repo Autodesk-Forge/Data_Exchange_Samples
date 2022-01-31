@@ -203,7 +203,6 @@ where `ITEM_ID` is the item ID of `items:autodesk.bim360:FDX` type.
 The above call returns an output (trimmed for brevity) similar to the following:
 
 ```json
-
 {
     ...
     "results": [
@@ -391,7 +390,6 @@ However, the rest of the received payload also contains a lot of useful informat
 -------
 
 **NOTE:** For samples illustrating the use of the Data Exchange API mentioned in this tutorial, please check the [samples folder](./samples).
-
 
 -------   
 
