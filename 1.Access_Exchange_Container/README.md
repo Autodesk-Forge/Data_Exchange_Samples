@@ -182,7 +182,7 @@ ultimately providing the content of the folder where the item referencing the ne
                 }
             },
             ...
-        },        
+        }]       
 }
 ```
 
