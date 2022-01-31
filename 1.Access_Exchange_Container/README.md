@@ -182,8 +182,7 @@ ultimately providing the content of the folder where the item referencing the ne
                 }
             },
             ...
-        },
-        
+        },        
 }
 ```
 
@@ -384,8 +383,7 @@ However, the rest of the received payload also contains a lot of useful informat
                         "autodesk.fdx:source.acc-1.0.0": {...}
                     }}}}
     		]
-	}
-	
+	}	
 	```
 	
 	from which we can notice that there are three data exchanges created using the Revit file as the source file, and in the above payload, we can also see from which view each data exchange was created.
