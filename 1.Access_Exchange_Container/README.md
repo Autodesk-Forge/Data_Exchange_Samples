@@ -194,7 +194,7 @@ The item pointing to the needed exchange can be identified based on the name giv
 Having the needed item, its ID allows you to get the exchange container using the Data Exchange API by calling this command:
 
 ```shell
-curl 'https://developer-stg.api.autodesk.com/exchange/v1/exchanges?filters=attribute.exchangeFileUrn=='$ITEM_ID \
+curl 'https://developer.api.autodesk.com/exchange/v1/exchanges?filters=attribute.exchangeFileUrn=='$ITEM_ID \
 --header 'Authorization: Bearer '$TOKEN
 ```
 
@@ -311,7 +311,7 @@ However, the rest of the received payload also contains a lot of useful informat
 	Using the `sourceFileUrn` as a filter allows creating workflows around cases like "Give me all exchanges created using this Revit file". For example, having the URN of a Revit file, we can make this call:
 	
 	```shell
-	curl 'https://developer-stg.api.autodesk.com/exchange/v1/exchanges?	filters=sourceFileUrn=='$REVIT_FILE_URN \
+	curl 'https://developer.api.autodesk.com/exchange/v1/exchanges?	filters=sourceFileUrn=='$REVIT_FILE_URN \
 	--header 'Authorization: Bearer '$TOKEN
 	```
 	
