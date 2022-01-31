@@ -15,6 +15,7 @@ The order is important for a soft introduction to Data Exchange API and its inte
     
     ![](./data.exchange.info/img/screenshot.png)
 2. [data.exchange.explorer](./data.exchange.explorer): a more complex webapp, puting the information extracted from exchange container in a Forge Viewer context.
+
     ![](./data.exchange.explorer/img/screenshot.png)
 
 ---
@@ -23,7 +24,7 @@ The order is important for a soft introduction to Data Exchange API and its inte
 
 1. **Forge Account:** Learn how to create a Forge Account, activate subscription, and create an app in [this tutorial](http://learnforge.autodesk.io/#/account/):
     - Since the exchange data is located within Autodesk Construction Cloud, a three-legged `data:read` token is required.
-2. [Node.Js](https://nodejs.org) with version > v14.16.0 and basic knowledge of JavaScript.
+2. [Node.Js](https://nodejs.org) with version > v17.3.0 and basic knowledge of JavaScript.
 
 
 ## License
