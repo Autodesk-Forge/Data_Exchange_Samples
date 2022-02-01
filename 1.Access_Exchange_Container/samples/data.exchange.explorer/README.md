@@ -45,7 +45,7 @@ Clone this project or download it (this `nodejs` branch only). It's recommended 
 
     git clone -b nodejs https://github.com/Autodesk-Forge/learn.forge.viewhubmodels.git
 
-To run it, install the required packages, set the enviroment variables with your client ID & secret, and finally, start it. Via command line, navigate to the folder where this repository was cloned and use the following command.
+To run it, install the required packages, set the enviroment variables with your client ID & secret, and finally, start it. Via the command line, navigate to the folder where this repository was cloned and use the command listed below.
 
 Mac OSX/Linux (Terminal):
 
@@ -77,7 +77,7 @@ Documentation:
 - [Data Management API](https://developer.autodesk.com/en/docs/data/v2/overview/)
 - [Viewer](https://developer.autodesk.com/en/docs/viewer/v6)
 
-### Tips & Tricks
+## Tips & Tricks
 
 For local development/testing, consider using [nodemon](https://www.npmjs.com/package/nodemon) package which auto restarts your node application after any modification to your code. To install it, use this command:
 
@@ -89,13 +89,13 @@ Then, instead of **npm run dev**, use the following command:
 
 which executes **nodemon server.js --ignore www/**, where the **--ignore** parameter indicates that the app should not restart if files are modified under the **www** folder.
 
-### Troubleshooting
+## Troubleshooting
 
 After installing Github desktop for Windows, on the Git Shell, if you see an ***error setting certificate, verify locations*** error, use the following command:
 
     git config --global http.sslverify "false"
 
-### License
+## License
 
 This sample is licensed under the terms of the [MIT License](http://opensource.org/licenses/MIT). Please see the [LICENSE](LICENSE) file for full details.
 
