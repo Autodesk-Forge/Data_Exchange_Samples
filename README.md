@@ -20,7 +20,7 @@ The order is important for a soft introduction to Data Exchange API and its inte
     - Identify different types of assets and relationships;
     - Understand the structure and the role of each asset and relationships type.
 
-4. [Identify the difference between versions of data exchange](./4.IdentifyVersionDifference):   
+4. [Identify the difference between data exchange versions](./4.IdentifyVersionDifference):   
     - Understand the concept of snapshot and revisions;
     - Understand how to use the snapshot revision information to retrieve the assets and relationships changed between revisions.
 
