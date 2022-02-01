@@ -41,7 +41,7 @@ For using this sample, you will need an Autodesk developer credentials. Visit th
 
 Install [NodeJS](https://nodejs.org), version 8 or newer.
 
-Clone this project or download it (this `nodejs` branch only). It's recommended to install [GitHub desktop](https://desktop.github.com/). To clone it via command line, use the following command (**Terminal** on MacOSX/Linux, **Git Shell** on Windows):
+Clone this project or download it (this `nodejs` branch only). It's recommended to install [GitHub desktop](https://desktop.github.com/). To clone it via the command line, use the following command (**Terminal** on MacOSX/Linux, **Git Shell** on Windows):
 
     git clone -b nodejs https://github.com/Autodesk-Forge/learn.forge.viewhubmodels.git
 
