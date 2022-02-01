@@ -19,7 +19,7 @@ You can find these two IDs within the exchange container that can be retrieved b
 ## Workflow explanation
 
 An exchange container is the entry point for exchange data that consists of collection of assets connected through relationships and forming a graph whose states are captured into snapshots.
-A more in-depth walk through the data, how it's structured, and what information it holds is discussed in the [next tutorial](https://stg.forge.autodesk.com/en/docs/fdxs/v1/tutorials/3_explore_data_and_relationships/?sha=forge_fdxs_master_preview), while here you can concentrate on ways of retrieving the data.
+A more in-depth walk through the data, how it's structured, and what information it holds is discussed in the [next tutorial](../3.ExploreDataAndRelationships), while here you can concentrate on ways of retrieving the data.
 
 There are two ways of retrieving the data as follows:
 
@@ -79,7 +79,7 @@ The above call provides a response similar to the following:
 }
 ```
 
-For brevity, the output was trimmed. You can see more details on asset data in the [next tutorial](https://stg.forge.autodesk.com/en/docs/fdxs/v1/tutorials/3_explore_data_and_relationships/?sha=forge_fdxs_master_preview), but for now, the most important thing to understand is that you get back pages of results (by default, a page returns 50 assets). As long as the `cursor` field is not empty, a page to receive (having provided the cursor as a query parameter) is like the following:
+For brevity, the output was trimmed. You can see more details on asset data in the [next tutorial](../3.ExploreDataAndRelationships), but for now, the most important thing to understand is that you get back pages of results (by default, a page returns 50 assets). As long as the `cursor` field is not empty, a page to receive (having provided the cursor as a query parameter) is like the following:
 
 ```shell
 curl --location --request GET 'https://developer.api.autodesk.com/exchange/v1/collections/co.cjm3cQPdRBGKft6IWqTDdQ/exchanges/474b17e1-0a39-3577-a349-0dccfd8680f4/assets:sync?cursor='$CURSOR \
@@ -176,7 +176,7 @@ The above call provides a response similar to the following:
 ```
 
 The results in the structure are similar to those when getting the assets. The same options are also available when retrieving the full data, either iterating through paginated results `relationships:sync` using the `cursor`, or using the `relationships:sync-urls` to get the links to data pages for concurrent retrieving. 
-The structure of `relationships:sync-urls` results is similar to those of `assets:sync-urls`, and is omitted here.
+The structure of `relationships:sync-urls` results is similar to that of `assets:sync-urls`, and is omitted here.
 
 
 ### 2. Download only parts you need by specifying filters or using the closure queries
@@ -192,12 +192,12 @@ To perform `search and retrieve` on the server side, there are two approaches as
 &nbsp;&nbsp;&nbsp;a. Use filtering when creating requests; <br/>
 &nbsp;&nbsp;&nbsp;b. Use closure-queries for a more advanced search.
 
-Let's dive deeper into each approach to better understand the benefits and limitations.
+Let's dive deeper into each approach to better understand their benefits and limitations.
 
 #### a. Use filtering when creating requests
 
 To be able to use filtering at its best, it's important to know the structure of an entity. 
-In context of Data Exchange,- collections, scenes, assets, relationships, and snapshots are the named entities and have the same kernel:
+In context of the Data Exchange,- collections, scenes, assets, relationships, and snapshots are the named entities and have the same kernel:
 
 ```json
 {
@@ -219,14 +219,14 @@ In context of Data Exchange,- collections, scenes, assets, relationships, and sn
 Thus, the common and important parts of any entity type, besides its `id`, are the `attributes` and `components`. 
 The attributes are mainly used to store key-value system data. Components, on the other hand, is the place where the properties of the model parts are stored using a certain schema.
 
-***Note:*** For the time being, the filtering using attributes and components is limited and will be soon extended.
+**NOTE:** For the time being, the filtering which uses attributes and components is limited, but soon it will be extended.
 
 #### b. Use closure-queries for a more advanced search
 
-Using filters (when it will be avaialble) will be useful, but might be limited to providing only data (e.g., assets, relationships) belonging to a certain set with common properties (e.g. of same types, having the same attributes, components etc.).
-However, when it comes to traversing the data graph, having a starting point like a given asset and getting other assets related to the starting asset (by traversing the relationships it's part of) is a way more complex task.
+Using filters (when it becomes available) will be useful, but might be limited to providing only data (e.g., assets, relationships) that belongs to a certain set with common properties (e.g., of same types, having the same attributes, components, etc.)
+However, when it comes to traversing the data graph, having a starting point like a given asset, and getting other assets related to the starting asset (by traversing the relationships it is part of) is a much more complex task.
 
-In context of Data Exchange, this task of traversing the graph is made through closure queries and can be performed through [v1/collections/{collectionId}/exchanges/{exchangeId}/assets:get-closure](https://stg.forge.autodesk.com/en/docs/fdxs/v1/reference/quick_reference/fdxs-getassetclosure-POST/?sha=forge_fdxs_master_preview) call by passing a certain set of parameters to the request body.
+In context of the Data Exchange, this task of traversing the graph is made through closure queries, and can be performed through [v1/collections/{collectionId}/exchanges/{exchangeId}/assets:get-closure](https://stg.forge.autodesk.com/en/docs/fdxs/v1/reference/quick_reference/fdxs-getassetclosure-POST/?sha=forge_fdxs_master_preview) call by passing a certain set of parameters to the request body.
 
 For example, the minimum request body is like the following:
 
@@ -240,7 +240,7 @@ For example, the minimum request body is like the following:
 }
 ```
 
-and returns all assets related to the starting assets along with relationships they're part of (between `from` and `to` relationships), as well as the sub-graph topology:
+which returns all assets related to the starting assets along with relationships they're part of (between `from` and `to` relationships), as well as the sub-graph topology:
 
 ```json
 {
@@ -284,17 +284,16 @@ and returns all assets related to the starting assets along with relationships t
 
 The `topology` part includes the information on `nodes` (e.g., assets) related to a starting asset, as well as the `edges` (e.g., relationships) which the starting assets are part of. The body response also includes the entities in the `relationships` and `assets` fields so that it saves time in further retrieving these.
 
-In this case, the result is not significantly big, but it also can end up having dozens of assets and even more relationships. Note that bi-directional relationships are represented by two relationships with opposite directions. 
+In this case, the result is not significantly big, but it also can end up as having dozens of assets and even more relationships. Note that bi-directional relationships are represented by two relationships with opposite directions. 
 
-***Not:e*** To narrow down the results, the closure queries will support `assetFilters` and `relationshipFilters`, which will help with filtering even further the results, to contain just assets and relationships respecting the filtering criteria.
+**NOTE:** To narrow down the results, the closure queries will support `assetFilters` and `relationshipFilters` which will help with filtering the results further, to contain just assets and relationships respecting the filtering criteria.
 
 -------
 
-***Note:*** For samples illustrating the use of the Data Exchange API mentioned in this tutorial, please check [samples folder](./samples).
-
+**NOTE:** For samples illustrating the use of the Data Exchange API mentioned in this tutorial, please check [samples folder](./samples).
 
 -------   
 	   
-In the [next tutorial](https://stg.forge.autodesk.com/en/docs/fdxs/v1/tutorials/3_explore_data_and_relationships/?sha=forge_fdxs_master_preview), you will better understand the structure of each entity, and how they form the data graph together.
+In the [next tutorial](../3.ExploreDataAndRelationships), you will understand better the structure of each entity, and how they form the data graph together.
 
 Refer to this page for more details: [Data Exchange](https://stg.forge.autodesk.com/en/docs/fdxs/v1/reference/quick_reference/?sha=forge_fdxs_master_preview).
