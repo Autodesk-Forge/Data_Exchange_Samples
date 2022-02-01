@@ -182,8 +182,7 @@ ultimately providing the content of the folder where the item referencing the ne
                 }
             },
             ...
-        },
-        
+        }]       
 }
 ```
 
@@ -195,7 +194,7 @@ The item pointing to the needed exchange can be identified based on the name giv
 Having the needed item, its ID allows you to get the exchange container using the Data Exchange API by calling this command:
 
 ```shell
-curl 'https://developer-stg.api.autodesk.com/exchange/v1/exchanges?filters=attribute.exchangeFileUrn=='$ITEM_ID \
+curl 'https://developer.api.autodesk.com/exchange/v1/exchanges?filters=attribute.exchangeFileUrn=='$ITEM_ID \
 --header 'Authorization: Bearer '$TOKEN
 ```
 
@@ -204,7 +203,6 @@ where `ITEM_ID` is the item ID of `items:autodesk.bim360:FDX` type.
 The above call returns an output (trimmed for brevity) similar to the following:
 
 ```json
-
 {
     ...
     "results": [
@@ -295,30 +293,28 @@ These two elements are essential because all subsequent calls made through Data 
 
 However, the rest of the received payload also contains a lot of useful information, such as the following:
 
-- The type of the exchange container is set to `autodesk.fdx.space:exchangecontainer-1.0.0` which indicates that it's a **Space** type item and should contain at least `attributes` and `components`.
+- The type of the exchange container is set to `autodesk.fdx.space:exchangecontainer-1.0.0`, which indicates that it's a **Space** type item and should contain at least `attributes` and `components`.
 
 - `attributes` are system-specific properties, but can and should be used to filter the item.
 	
-   In the above call, the ``filters=attribute.exchangeFileUrn=='$ITEM_ID`` query string was used to identify the exchange container by ``exchangeFileUrn`` attribute. 
-
+   In the above call, the `filters=attribute.exchangeFileUrn=='$ITEM_ID` query string was used to identify the exchange container by `exchangeFileUrn` attribute. 
 
 -  `components` are more complex schema-based properties. In the above payloads, you can notice that it contains three properties like the following:
 
     1. `autodesk.fdx:source.acc-1.0.0`, holding the information about the URN, version, and location of the source file used to create the exchange.
     2. `autodesk.fdx:contract.revitViewGeometry-1.0.0`, holding the data regarding the exchange contract - in this case, it's the name and ID of the view within the source file used to create the exchange.
     3. `autodesk.fdx:host.acc-1.0.0`, holding the data regarding the name, ID, and location of the item pointing to the current exchange container.
-
-    
- **NOTE:** For now, only filtering by `exchangeFileUrn` and `sourceFileUrn` attributes is allowed, but later, it might be extended to all attributes and components.
    
-	Using the `sourceFileUrn` as a filter allows creating workflows around case like "Give me all exchanges created using this Revit file". For example, having the urn of a Revit file, we can call:
+ 	**NOTE:** For now, only filtering by `exchangeFileUrn` and `sourceFileUrn` attributes is allowed, but later, it might be extended to all attributes and components.
+   
+	Using the `sourceFileUrn` as a filter allows creating workflows around cases like "Give me all exchanges created using this Revit file". For example, having the URN of a Revit file, we can make this call:
 	
 	```shell
-	curl 'https://developer-stg.api.autodesk.com/exchange/v1/exchanges?	filters=sourceFileUrn=='$REVIT_FILE_URN \
+	curl 'https://developer.api.autodesk.com/exchange/v1/exchanges?	filters=sourceFileUrn=='$REVIT_FILE_URN \
 	--header 'Authorization: Bearer '$TOKEN
 	```
 	
-	and expect an output like:
+	and expect an output like the following:
 	
 	```json
 	{
@@ -386,16 +382,14 @@ However, the rest of the received payload also contains a lot of useful informat
                         "autodesk.fdx:source.acc-1.0.0": {...}
                     }}}}
     		]
-	}
-	
+	}	
 	```
 	
-	from which we can notice that there are three data exchanges created using the Revit file as the source file and in the above payload we can also see from which view each data exchange was created.
+	from which we can notice that there are three data exchanges created using the Revit file as the source file, and in the above payload, we can also see from which view each data exchange was created.
 	
 -------
 
-***Note:*** For samples illustrating the use of the Data Exchange API mentioned in this tutorial, please check [samples folder](./samples).
-
+**NOTE:** For samples illustrating the use of the Data Exchange API mentioned in this tutorial, please check the [samples folder](./samples).
 
 -------   
 
