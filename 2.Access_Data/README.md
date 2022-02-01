@@ -30,7 +30,7 @@ There are two ways of retrieving the data as follows:
 
 ### 1. Download all data for processing on the client side
 
-Downloading the entire data is intuitive, and each type of entity (e.g., assets, relationships, or snapshots) has its own endpoint.
+Downloading the entire data is intuitive, and each type of entity (e.g., assets, relationships, or snapshots) has its own endpoint:
 
 
 #### a. Downloading assets
