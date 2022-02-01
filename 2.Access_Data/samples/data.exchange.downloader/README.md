@@ -11,8 +11,7 @@
 
 # Description
 
-This sample is a CLI app, illustrating how, using the item id related to an exchange, get in parallel the assets and 
-relationships, save them in a single json and present stats on exchange data.
+This sample is a CLI app, illustrating how, using the `item id` related to an exchange, get the assets and relationships, save them as json and present stats on exchange data.
 
 # Setup
 
@@ -51,11 +50,13 @@ Windows (use **Node.js command line** from Start menu)
     set TOKEN=<<YOUR TOKEN HERE>>
     npm start <<ID OF THE ITEM>>
 
+The expected output should look like:
 
+![](./img/screenshot.png)
 
 ## Packages used
 
-The [Autodesk Forge](https://www.npmjs.com/package/forge-apis) packages is included by default. Some other non-Autodesk packaged are used, including [express](https://www.npmjs.com/package/express) and [multer](https://www.npmjs.com/package/multer) for upload.
+This sample is using no external library except `cli-table` for the nice table output.
 
 ## License
 
