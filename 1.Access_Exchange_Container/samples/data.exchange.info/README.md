@@ -36,7 +36,7 @@ Download this project or clone it using [git](https://git-scm.com/).
 It's recommended to install [GitHub desktop](https://desktop.github.com/). 
 
 To run it, install the required packages, set the environment variables with token, and finally start it. 
-Via the command line, navigate to the folder where this sample is located and run command listed below.
+Via the command line, navigate to the folder where this sample is located and run the command listed below.
 
 Mac OSX/Linux (Terminal):
 
@@ -58,10 +58,10 @@ The expected output should look like the following:
 
 This sample is using `axios` for http calls, and `cli-table` for the table-formatted output.
 
-### License
+## License
 
 This sample is licensed under the terms of the [MIT License](http://opensource.org/licenses/MIT). Please see the [LICENSE](LICENSE) file for full details.
 
-### Written by
+## Written by
 
 [Forge Partner Development](http://forge.autodesk.com)
