@@ -192,7 +192,7 @@ To perform `search and retrieve` on the server side, there are two approaches as
 &nbsp;&nbsp;&nbsp;a. Use filtering when creating requests; <br/>
 &nbsp;&nbsp;&nbsp;b. Use closure-queries for a more advanced search.
 
-Let's dive deeper into each approach to better understand their benefits and limitations.
+Let's dive deeper into each approach to better understand their benefits and limitations:
 
 #### a. Use filtering when creating requests
 
