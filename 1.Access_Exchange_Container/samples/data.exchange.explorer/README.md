@@ -67,7 +67,7 @@ Open the browser: [http://localhost:3000](http://localhost:3000).
 
 ### Packages used
 
-The [Autodesk Forge](https://www.npmjs.com/package/forge-apis) packages are included by default. Some other non-Autodesk packages are also used including [express](https://www.npmjs.com/package/express) and [multer](https://www.npmjs.com/package/multer) for upload operations.
+The [Autodesk Forge](https://www.npmjs.com/package/forge-apis) packages are included by default. Some other non-Autodesk packages are also used, including [express](https://www.npmjs.com/package/express) and [multer](https://www.npmjs.com/package/multer) for upload operations.
 
 ## Further Reading
 
