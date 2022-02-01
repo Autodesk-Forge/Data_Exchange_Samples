@@ -24,7 +24,7 @@ and [create an app](https://developer.autodesk.com/myapps/create).
 **NOTE:** To simplify the sample, since it requires a 3-legged authentication, it was stripped of the authentication part (requiring to open a browser) 
 and will just expect a `$TOKEN` env variable to be present before running the sample.
 The easiest way of acquiring a 3-legged authentication token is to follow the [3-legged authentication with Postman](https://forge.autodesk.com/blog/3-legged-authentication-postman) blog post.
-After the access token is acquired, it can be set as environment variable as explained below.
+After the access token is acquired, it can be set as an environment variable as explained below.
 
 ### Running locally
 
@@ -32,7 +32,7 @@ Download this project or clone it using [git](https://git-scm.com/).
 It's recommended to install [GitHub desktop](https://desktop.github.com/). 
 
 To run it, install the required packages, set the environment variables with token, and finally start it. 
-Via command line, navigate to the folder where this sample is located and run the command below.
+Via the command line, navigate to the folder where this sample is located and run the command listed below.
 
 Mac OSX/Linux (Terminal):
 
