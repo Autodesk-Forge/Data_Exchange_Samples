@@ -68,7 +68,7 @@ What you did so far was to manually identify the assets and relationships that c
 
 ## Snapshots and revisions
 
-Each exchange will have just one corresponding snapshot, no matter how many times it is changed (how many versions of the exchange item exists in ACC). The snapshot can be seen as the pointer to the graph, while snapshot revisions can be seen as the markers or pointers to different states of the graph.
+Each exchange will have just one corresponding snapshot, no matter how many times it is changed (how many versions of the exchange item exists in ACC). Thus, in the case of one data exchange container, there will be just one snapshot, and any changes made to an exchange will not create another snapshot, but create another revision of the snapshot. The snapshot can be seen as the pointer to the graph, while snapshot revisions can be seen as the markers or pointers to different states of the graph.
 
 The snapshot information can be retrieved using the following call:
 
