@@ -43,7 +43,7 @@ Clone this project or download it (this `nodejs` branch only). It's recommended 
 
     git clone -b nodejs https://github.com/Autodesk-Forge/learn.forge.viewhubmodels.git
 
-To run it, install the required packages, set the enviroment variables with your client ID & secret, and finally, start it. Using the command line, navigate to the folder where this repository was cloned and run the following command:
+To run it, install the required packages, set the enviroment variables with your client ID & secret, and finally, start it. Using the command line, navigate to the folder where this repository was cloned and run the command listed below.
 
 Mac OSX/Linux (Terminal):
 
