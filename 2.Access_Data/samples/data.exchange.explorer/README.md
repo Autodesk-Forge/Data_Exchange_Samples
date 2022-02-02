@@ -13,40 +13,39 @@
 
 ![Intermediate](https://img.shields.io/badge/Level-Intermediate-orange.svg)
 
-# Description
+## Description
 
-This sample is extending the sample (with same name) from tutorial 1 sample pack. Was added the ability to get in Forge Viewer context the stats on assets and relationships related to visualized exchange, as well as download them for further client side processing.
+This sample is extending the sample (of the same name) from Tutorial #1 sample pack. Added the ability to get the stats on assets and relationships related to visualized exchange in Forge Viewer context, as well as download them for further client-side processing.
 
-The main changes were made to two files:
+Mainly these two files were changed:
 
-1. The [dataexchange](./routes/dataexchange.js) added several new backend routs responsible for all Data Exchange API calls;
-2. The [FDX_Explorer extension](public/js/fdx_explorer.js), added a new button, panel and ability to download the results.
+1. The [dataexchange](./routes/dataexchange.js) - added several new backend routes responsible for all Data Exchange API calls;
+2. The [FDX_Explorer extension](public/js/fdx_explorer.js) - added a new button, panel, and ability to download the results.
 
 ![](./img/video.gif)
 
-# Setup
+## Setup
 
-## Prerequisites
+### Prerequisites
 
-1. **Forge Account**: Learn how to create a Forge Account, activate subscription and create an app at [this tutorial](http://learnforge.autodesk.io/#/account/). 
-2. **Visual Code**: Visual Code (Windows or MacOS).
-3. **JavaScript ES6** syntax for server-side
-4. **JavaScript** basic knowledge with **jQuery**
+1. **Forge Account:** Learn how to create a Forge Account, activate subscription, and create an app in [this tutorial](http://learnforge.autodesk.io/#/account/). 
+2. **Visual Code:** Visual Code (Windows or MacOS).
+3. **JavaScript ES6:** Syntax for server-side.
+4. **JavaScript:** Basic knowledge with **jQuery**.
 
+To use this sample, you will need an Autodesk developer credentials. Visit the [Forge Developer Portal](https://developer.autodesk.com), sign up for an account, and [create an app](https://developer.autodesk.com/myapps/create). For this new app, use **http://localhost:3000/api/forge/callback/oauth** as the Callback URL; although, it's not used on a 2-legged flow. Finally, take note of the **Client ID** and **Client Secret**.
 
-For using this sample, you need an Autodesk developer credentials. Visit the [Forge Developer Portal](https://developer.autodesk.com), sign up for an account, then [create an app](https://developer.autodesk.com/myapps/create). For this new app, use **http://localhost:3000/api/forge/callback/oauth** as Callback URL, although is not used on 2-legged flow. Finally take note of the **Client ID** and **Client Secret**.
-
-## Running locally
+### Running locally
 
 Install [NodeJS](https://nodejs.org), version 8 or newer.
 
-Clone this project or download it (this `nodejs` branch only). It's recommended to install [GitHub desktop](https://desktop.github.com/). To clone it via command line, use the following (**Terminal** on MacOSX/Linux, **Git Shell** on Windows):
+Clone this project or download it (this `nodejs` branch only). It's recommended to install [GitHub desktop](https://desktop.github.com/). To clone it via the command line, use the following command (via **Terminal** on MacOSX/Linux, **Git Shell** on Windows):
 
     git clone -b nodejs https://github.com/Autodesk-Forge/learn.forge.viewhubmodels.git
 
-To run it, install the required packages, set the enviroment variables with your client ID & secret and finally start it. Via command line, navigate to the folder where this repository was cloned and use the following:
+To run it, install the required packages, set the enviroment variables with your client ID & secret, and finally, start it. Using the command line, navigate to the folder where this repository was cloned and run the following command:
 
-Mac OSX/Linux (Terminal)
+Mac OSX/Linux (Terminal):
 
     npm install
     export FORGE_CLIENT_ID=<<YOUR CLIENT ID FROM DEVELOPER PORTAL>>
@@ -54,7 +53,7 @@ Mac OSX/Linux (Terminal)
     export FORGE_CALLBACK_URL=<<YOUR CALLBACK URL>>
     npm start
 
-Windows (use **Node.js command line** from Start menu)
+Windows (use **Node.js command line** from Start menu):
 
     npm install
     set FORGE_CLIENT_ID=<<YOUR CLIENT ID FROM DEVELOPER PORTAL>>
@@ -64,11 +63,11 @@ Windows (use **Node.js command line** from Start menu)
 
 Open the browser: [http://localhost:3000](http://localhost:3000).
 
-## Packages used
+### Packages used
 
-The [Autodesk Forge](https://www.npmjs.com/package/forge-apis) packages is included by default. Some other non-Autodesk packaged are used, including [express](https://www.npmjs.com/package/express) and [multer](https://www.npmjs.com/package/multer) for upload.
+The [Autodesk Forge](https://www.npmjs.com/package/forge-apis) packages are included by default. Some other non-Autodesk packages are also used, including [express](https://www.npmjs.com/package/express) and [multer](https://www.npmjs.com/package/multer) for upload operations.
 
-# Further Reading
+## Further Reading
 
 Documentation:
 
@@ -76,21 +75,21 @@ Documentation:
 - [Data Management API](https://developer.autodesk.com/en/docs/data/v2/overview/)
 - [Viewer](https://developer.autodesk.com/en/docs/viewer/v6)
 
-### Tips & Tricks
+## Tips & Tricks
 
-For local development/testing, consider use [nodemon](https://www.npmjs.com/package/nodemon) package, which auto restart your node application after any modification on your code. To install it, use:
+For local development/testing, consider using [nodemon](https://www.npmjs.com/package/nodemon) package which auto restarts your node application after any modifications to your code. To install it, run this command:
 
     sudo npm install -g nodemon
 
-Then, instead of **npm run dev**, use the following:
+Then, instead of **npm run dev**, run the following command:
 
     npm run nodemon
 
-Which executes **nodemon server.js --ignore www/**, where the **--ignore** parameter indicates that the app should not restart if files under **www** folder are modified.
+which executes **nodemon server.js --ignore www/** where the **--ignore** parameter indicates that the app should not restart if files under the **www** folder are modified.
 
-### Troubleshooting
+## Troubleshooting
 
-After installing Github desktop for Windows, on the Git Shell, if you see a ***error setting certificate verify locations*** error, use the following:
+After installing Github desktop for Windows, on the Git Shell, if you see an ***error setting certificate, verify locations*** error, execute the following command:
 
     git config --global http.sslverify "false"
 
@@ -101,5 +100,3 @@ This sample is licensed under the terms of the [MIT License](http://opensource.o
 ## Written by
 
 Petr Broz [@petrbroz](https://twitter.com/petrbroz), [Forge Partner Development](http://forge.autodesk.com)
-
-## Modified by
