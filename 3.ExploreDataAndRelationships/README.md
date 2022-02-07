@@ -1,6 +1,6 @@
 # Explore data and relationships
 
-This tutorial will help you understand how the data is structured using assets and relationships, and the corresponding role played by snapshots and revisions within the Data Exchange:
+This tutorial will help you understand how the data is structured using assets and relationships.
 
 - [Intro](#intro)
 - [Data Graph](#data-graph)
@@ -10,7 +10,7 @@ This tutorial will help you understand how the data is structured using assets a
 
 In a previous tutorial, it was mentioned that the data within an exchange container is organized as a graph. It's a collection of assets, grouped in spaces and linked through relationships.
 
-Collections, assets, spaces, relationships, and snapshots share the same structure - being generalized as entities. Entities have the following schema: 
+Collections, assets, spaces, relationships and snapshots share the same structure - being generalized as entities. Entities have the following schema: 
 
 ```json
 {
@@ -78,7 +78,6 @@ Assets are the entities whose primary scope is to store properties. In the Data 
  
  In case of assets, the components can be one or more of the following types:
 
-- `autodesk.design:assets.binary-1.0.0`
 - `autodesk.design:components.base-1.0.0`
 - `autodesk.design:components.color.rgba-1.0.0`
 - `autodesk.design:components.geometry-1.0.0`
