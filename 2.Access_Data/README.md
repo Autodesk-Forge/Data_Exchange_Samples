@@ -91,7 +91,7 @@ This kind of sequential query could be daunting, especially if the source view c
 For this very purpose, there is a way to facilitate a parallel retrieval of data by calling [v1/collections/{collectionId}/exchanges/{exchangeId}/assets:sync-urls](https://stg.forge.autodesk.com/en/docs/fdxs/v1/reference/quick_reference/fdxs-getassetsyncurls-GET/?sha=forge_fdxs_master_preview) as follows:
 
 ```shell
-curl 'https://developer.api.autodesk.com/exchange/v1/collections/'$COLLECTION_ID'/exchanges/'$EXCHANGE_ID'/assets:sync-url' \
+curl 'https://developer.api.autodesk.com/exchange/v1/collections/'$COLLECTION_ID'/exchanges/'$EXCHANGE_ID'/assets:sync-urls' \
 --header 'Authorization: Bearer '$TOKEN
 ```
 
