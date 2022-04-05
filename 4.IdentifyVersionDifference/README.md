@@ -207,7 +207,7 @@ The same concept is valid when retrieving the relationships. Such, a call as the
 
 ```shell
 curl 'https://developer.api.autodesk.com/exchange/v1/collections/'$COLLECTION_ID'/exchanges/'$EXCHANGE_ID'/relationships:sync?filters=exchange.snapshot.fromRevision==
-'$REVISION_V1_ID'&filters=exchange.snapshot.toRevision=='$REVISION_V2_ID' \
+'$REVISION_V1_ID';exchange.snapshot.toRevision=='$REVISION_V2_ID' \
 --header 'Authorization: Bearer '$TOKEN
 ```
 
