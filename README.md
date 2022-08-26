@@ -7,7 +7,7 @@
 **Forge API:** [![oAuth2](https://img.shields.io/badge/oAuth2-v2-green.svg)](http://developer-autodesk.github.io/) [![Data-Management](https://img.shields.io/badge/Data%20Management-v1-green.svg)](http://developer.autodesk.com/) [![BIM-360](https://img.shields.io/badge/BIM%20360-v1-green.svg)](http://developer.autodesk.com/) [![Webhook](https://img.shields.io/badge/Webhook-v1-green.svg)](http://developer.autodesk.com/) [![Data Exchange](https://img.shields.io/badge/Data%20Exchange-Beta-orange)](http://developer.autodesk.com/)
 ---
 
-This repository contains a collection of tutorials, workflows, and samples illustrating access to exchanges and contained data using [Forge Data Exchange API](https://stg.forge.autodesk.com/en/docs/fdxs/v1/developers_guide/fd_overview/?sha=forge_fdxs_master_preview). 
+This repository contains a collection of tutorials, workflows, and samples illustrating access to exchanges and contained data using [Forge Data Exchange API](https://forge.autodesk.com/en/docs/fdx/v1/developers_guide/fd_overview/). 
 The order is important for a soft introduction to Data Exchange API and its interoperability with other Forge APIs:
 
 1. [Access the exchange container](./1.Access_Exchange_Container): 
